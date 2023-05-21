@@ -1,43 +1,31 @@
 import {create} from 'zustand'
 import {createJSONStorage, persist} from 'zustand/middleware'
 
-export interface UserStore {
-    id: string
-    username: string | undefined
-    token: string | undefined
-    roleId: string
-    roleName: string
-    setUserId: (id: string) => void
-    setUsername: (username: string) => void
-    setUserToken: (token: string | undefined) => void
-    setUserRole: (id: string) => void
-    setUserRoleName: (name: string) => void
+export interface UserSessionStore {
+    loggedIn: boolean
+    accessToken: string | undefined
+    tokenExpiryDate: Date | undefined
+    setLoggedIn: (loggedIn: boolean) => void
+    setAccessToken: (accessToken: string) => void
+    setTokenExpiryDate: (tokenExpiryDate: Date) => void
 }
 
 const useUserSessionStore = create(
-    persist<UserStore>((set, get) => ({
-            id: '',
-            username: '',
-            token: undefined,
-            roleId: '',
-            roleName: 'User',
-            setUserId: (id) => set(prev => ({
-                id: prev.id = id
+    persist<UserSessionStore>((set, get) => ({
+            loggedIn: false,
+            accessToken: undefined,
+            tokenExpiryDate: undefined,
+            setLoggedIn: (loggedIn) => set(prev => ({
+                loggedIn: prev.loggedIn = loggedIn
             })),
-            setUsername: (username) => set(prev => ({
-                username: prev.username = username
+            setAccessToken: (accessToken) => set(prev => ({
+                accessToken: prev.accessToken = accessToken
             })),
-            setUserToken: (token) => set(prev => ({
-                token: prev.token = token
-            })),
-            setUserRole: (id) => set(prev => ({
-                roleId: prev.roleId = id
-            })),
-            setUserRoleName: (name) => set(prev => ({
-                roleName: prev.roleName = name
+            setTokenExpiryDate: (tokenExpiryDate) => set(prev => ({
+                tokenExpiryDate: prev.tokenExpiryDate = tokenExpiryDate
             })),
         }), {
-            name: 'user-store',
+            name: 'user-session-store',
             storage: createJSONStorage(() => sessionStorage)
         }
     )
