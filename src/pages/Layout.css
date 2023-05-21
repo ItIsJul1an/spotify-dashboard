@@ -1,0 +1,16 @@
+#layout-container {
+    grid-area: main;
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    height: 100%;
+    width: 100%;
+
+    padding: 40px;
+
+    background: var(--nl-clr-1);
+
+    overflow: auto;
+}
