@@ -1,4 +1,3 @@
-import React from 'react'
 import React, {useEffect, useState} from 'react'
 import Trending from '../components/ui/trending_section/Trending'
 import {
