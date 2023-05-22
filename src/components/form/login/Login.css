@@ -1,0 +1,21 @@
+#login-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    height: 50px;
+    width: 360px;
+
+    border-radius: var(--br-r-small);
+    border: 3px solid var(--table-td--border-clr);
+
+    background-color: unset;
+
+    cursor: pointer;
+    user-select: none
+}
+
+#login-img {
+    width: 20px;
+}
