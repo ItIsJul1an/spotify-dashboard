@@ -245,7 +245,7 @@ ul {
     grid-template-areas: 'sidebar navbar action'
                          'sidebar main action';
 
-    grid-template-rows: 75px 1fr;
+    grid-template-rows: 80px 1fr;
     grid-template-columns: 260px 1fr 360px;
 
     height: 100vh;
@@ -264,9 +264,9 @@ ul {
     height: 100vh;
     width: 100vw;
 
-    background-color: hsl(0, 0%, 0%, 30%);
+    background-color: hsl(228, 11%, 56%, 60%);
 
-    backdrop-filter: blur(4px);
+    /*backdrop-filter: blur(4px);*/
 
     z-index: 999;
 }
