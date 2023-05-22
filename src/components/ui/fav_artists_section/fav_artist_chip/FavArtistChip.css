@@ -1,0 +1,11 @@
+#fav-artist-chip-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#artist-img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
