@@ -1,0 +1,28 @@
+#navbar-container {
+    grid-area: navbar;
+
+    display: flex;
+    align-items: center;
+    gap: 40px;
+
+    padding: 0 40px;
+    background-color: var(--nl-clr-1);
+}
+
+#navbar-container > div:first-of-type {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nav-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: var(--pd-t-small);
+
+    border-radius: 50%;
+
+    cursor: pointer;
+}
