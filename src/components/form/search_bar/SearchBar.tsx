@@ -1,8 +1,8 @@
-import React, {useEffect, useMemo, useRef, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
+import {debounce} from 'lodash'
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded'
+import {useGetSearchQuery} from '../../../utils/api/apiService'
 import './SearchBar.css'
-import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
-import {useGetSearchQuery} from "../../../utils/api/apiService";
-import {debounce} from "lodash";
 
 const SearchBar = () => {
 
