@@ -3,6 +3,7 @@ import axios from 'axios'
 import {webApiEndpoint} from '../../data/configs/webApi/webApiConfig'
 import useUserSessionStore from '../../stores/user_session/userSessionStore'
 import useTracksStore from "../../stores/tracks/useTrackStore";
+import {useEffect} from "react";
 
 export const useGetUserTrendingTracksQuery = (limit: number = 20) => {
     const {accessToken} = useUserSessionStore()
@@ -78,6 +79,19 @@ export const useGetCheckFollowUserQuery = (user: string) => {
             })
                 .then((res) => res.data), {
             enabled: accessToken !== undefined && accessToken !== ''
+        }
+    )
+}
+
+export const useGetSearchQuery = (searchQuery: string = '') => {
+    const {accessToken} = useUserSessionStore()
+
+    return useQuery(['search'], () =>
+            axios.get(`${webApiEndpoint}/search?q=${searchQuery}&type=album%2Cplaylist%2Cartist%2Ctrack`, {
+                headers: {Authorization: `Bearer ${accessToken}`}
+            })
+                .then((res) => res.data), {
+            enabled: accessToken !== undefined && accessToken !== '' && searchQuery !== '' && searchQuery !== ' '
         }
     )
 }
