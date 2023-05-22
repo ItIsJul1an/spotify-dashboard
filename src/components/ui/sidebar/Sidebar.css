@@ -1,0 +1,5 @@
+#sidebar-container {
+    grid-area: sidebar;
+
+    background-color: var(--nl-clr-2);
+}
