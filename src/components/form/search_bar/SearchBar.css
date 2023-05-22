@@ -1,0 +1,27 @@
+#search-bar--container {
+    position: relative;
+    border-radius: var(--br-r-medium);
+    box-shadow: var(--drp-shadow-dark-rvt);
+}
+
+#search-bar--text-input {
+    height: 50px;
+    width: 100%;
+
+    max-height: 56px;
+
+    padding: 0 60px;
+
+    border-radius: var(--br-r-small);
+    border-width: 2px;
+}
+
+#search-bar--text-input::placeholder {
+    color: hsl(240, 2%, 81%);
+}
+
+#search-bar--container > div {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+}
