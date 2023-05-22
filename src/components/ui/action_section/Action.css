@@ -1,0 +1,16 @@
+#action-container {
+    grid-area: action;
+
+    display: grid;
+    align-items: start;
+
+    padding: 20px 40px;
+
+    background-color: var(--nl-clr-1);
+}
+
+.action {
+    display: grid;
+    align-items: start;
+    grid-gap: 20px;
+}
