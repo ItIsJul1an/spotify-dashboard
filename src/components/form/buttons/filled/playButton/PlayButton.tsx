@@ -6,6 +6,8 @@ import {
 } from '../../../../../utils/api/apiService'
 import useDeviceStore from '../../../../../stores/devices/useDeviceStore'
 import './PlayButton.css'
+import useTracksStore from "../../../../../stores/tracks/useTrackStore";
+import {useQueryClient} from "@tanstack/react-query";
 
 interface PlayButtonProps {
     trackUri: string
@@ -13,19 +15,24 @@ interface PlayButtonProps {
 
 const PlayButton = ({trackUri, ...props}: PlayButtonProps & ButtonHTMLAttributes<HTMLButtonElement>) => {
 
+    const queryClient = useQueryClient()
+
     const {activeDevice} = useDeviceStore()
+    const {playingTrack} = useTracksStore()
 
     const [isPlaying, setPlaying] = useState<boolean>(false)
-
-    const currentlyPlaying = useGetCurrentlyPlayingQuery()
 
     const playTrack = usePlayTrackMutation(activeDevice ? activeDevice.id : undefined)
     const pauseTrack = usePauseTrackMutation(activeDevice ? activeDevice.id : undefined)
 
     useEffect(() => {
-        if (currentlyPlaying.isSuccess && currentlyPlaying.data.item !== undefined) {
-            if (currentlyPlaying.data.item.uri === trackUri) {
-                if (currentlyPlaying.data.is_playing) {
+        queryClient.refetchQueries(['currentlyPlayingTrack'])
+    }, [])
+
+    useEffect(() => {
+        if (playingTrack) {
+            if (playingTrack.uri === trackUri) {
+                if (playingTrack.is_playing) {
                     setPlaying(() => true)
                 } else {
                     setPlaying(() => false)
@@ -34,7 +41,7 @@ const PlayButton = ({trackUri, ...props}: PlayButtonProps & ButtonHTMLAttributes
                 setPlaying(() => false)
             }
         }
-    }, [currentlyPlaying.data, trackUri])
+    }, [trackUri, playingTrack])
 
     return (
         <button id='play-button' aria-label='Play button' {...props}
