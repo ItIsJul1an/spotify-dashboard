@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Trending from '../components/ui/trending_section/Trending'
 import {
+    useGetCurrentlyPlayingQuery,
     useGetFollowedArtistsQuery,
     useGetUserDevicesQuery,
     useGetUserTrendingTracksQuery
@@ -10,15 +11,20 @@ import useUserSessionStore from "../stores/user_session/userSessionStore"
 import useDeviceStore from "../stores/devices/useDeviceStore"
 import './Layout.css'
 import useArtistStore from "../stores/artists/useArtistStore";
+import useTracksStore from "../stores/tracks/useTrackStore";
+import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Overview = () => {
 
     const {setDevices, setActiveDevice} = useDeviceStore()
     const {setFollowedArtists} = useArtistStore()
+    const {setPlayingTrack} = useTracksStore()
 
     const getUserTrendings = useGetUserTrendingTracksQuery(1)
     const getUserDevices = useGetUserDevicesQuery()
     const getFollowedArtists = useGetFollowedArtistsQuery()
+    const getPlayingTrack = useGetCurrentlyPlayingQuery()
 
     const [trendingTracks, setTrendingTracks] = useState<TrendingTrack>({
         items: [{
@@ -44,6 +50,8 @@ const Overview = () => {
 
             if (data.devices.length !== 0) {
                 setActiveDevice(data.devices[0])
+            } else {
+                toast.warn('No active devices available!')
             }
         }
     }, [getUserDevices.data])
@@ -78,9 +86,31 @@ const Overview = () => {
         }
     }, [getFollowedArtists.data])
 
+    useEffect(() => {
+        const data = getPlayingTrack.data
+
+        if (getPlayingTrack.isSuccess && data.item !== undefined) {
+            setPlayingTrack({
+                id: data.item.id,
+                uri: data.item.uri,
+                is_playing: data.is_playing,
+                name: data.item.name,
+                type: data.item.type,
+                popularity: data.item.popularity,
+                is_local: data.item.is_local,
+                duration_ms: data.item.duration_ms,
+                album: {
+                    id: data.item.album.id
+                },
+                playing_progress_ms: data.progress_ms
+            })
+        }
+    }, [getPlayingTrack.data])
+
     return (
         <div id='layout-container'>
             <Trending trendingTracks={trendingTracks}/>
+            <ToastContainer/>
         </div>
     )
 }
