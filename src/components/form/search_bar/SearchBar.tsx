@@ -4,7 +4,11 @@ import SearchRoundedIcon from '@mui/icons-material/SearchRounded'
 import {useGetSearchQuery} from '../../../utils/api/apiService'
 import './SearchBar.css'
 
-const SearchBar = () => {
+interface SearchBarProps {
+    setSearchResult: Function
+}
+
+const SearchBar = ({setSearchResult}: SearchBarProps) => {
 
     const debouncedSearch = useRef(
         debounce((searchQuery) => {
@@ -13,13 +17,14 @@ const SearchBar = () => {
     ).current
 
     const [searchQuery, setQuery] = useState<string>('')
-    const [searchResult, setSearchResult] = useState<any>()
 
     const search = useGetSearchQuery(searchQuery)
 
     useEffect(() => {
         if (searchQuery !== '' && searchQuery !== ' ') {
             search.refetch()
+        } else {
+            setSearchResult(undefined)
         }
     }, [searchQuery])
 
@@ -32,7 +37,6 @@ const SearchBar = () => {
     useEffect(() => {
         if (search.isSuccess) {
             setSearchResult(search.data)
-            console.log(searchResult)
         }
     }, [search.data])
 
