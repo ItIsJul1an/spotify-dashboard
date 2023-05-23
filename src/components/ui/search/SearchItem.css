@@ -1,0 +1,27 @@
+#search-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px 20px;
+
+    border-radius: var(--br-r-small-medium);
+
+    transition: background-color 200ms;
+}
+
+#search-item:hover {
+    background-color: hsl(220, 20%, 97%);
+
+    transition: unset;
+}
+
+#search-item > div {
+    display: grid;
+}
+
+#search-item > div > div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
