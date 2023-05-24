@@ -14,7 +14,7 @@ const useArtistsStore = create(
                 followers: 0,
                 genres: [''],
                 id: '',
-                imageUrl: '',
+                images: [{height: 0, width: 0, url: ''}],
                 name: '',
                 popularity: 0,
                 type: '',
