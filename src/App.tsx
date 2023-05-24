@@ -2,6 +2,9 @@ import React from 'react'
 import {Route, Routes} from 'react-router'
 import LandingPage from './pages/LandingPage/LandingPage'
 import Overview from './pages/Overview'
+import FavSongsPage from './pages/fav/songs/FavSongsPage'
+import FavAlbumsPage from './pages/fav/albums/FavAlbumsPage'
+import FavArtistsPage from './pages/fav/artists/FavArtistsPage'
 import Navbar from './components/ui/navbar/Navbar'
 import Sidebar from './components/ui/sidebar/Sidebar'
 import Action from './components/ui/action_section/Action'
@@ -20,7 +23,7 @@ function App() {
 
     const defaultProtectedRouteProps: Omit<ProtectedRouteProps, 'outlet'> = {
         isAuthenticated: accessToken !== undefined && accessToken !== '',
-        redirectPath: '/dashboard/',
+        redirectPath: '/dashboard',
     }
 
     return (
@@ -37,8 +40,20 @@ function App() {
             }
 
             <Routes>
-                <Route path='/dashboard/'
+                <Route path='/dashboard'
                        element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<Overview/>}/>}/>
+                <Route path='dashboard/trends'
+                       element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<Overview/>}/>}/>
+                <Route path='dashboard/new'
+                       element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<Overview/>}/>}/>
+                <Route path='dashboard/events'
+                       element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<Overview/>}/>}/>
+                <Route path='dashboard/fav/songs'
+                       element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<FavSongsPage/>}/>}/>
+                <Route path='dashboard/fav/artists'
+                       element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<FavArtistsPage/>}/>}/>
+                <Route path='dashboard/fav/albums'
+                       element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<FavAlbumsPage/>}/>}/>
                 <Route path='*'
                        element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<LandingPage/>}/>}/>
             </Routes>
