@@ -4,14 +4,12 @@ export type Album = {
     release_date: string
     release_date_precision: string
     total_tracks: number
-    image_url: string
+    images: { height: number; width: number; url: string }[]
     type: string
     uri: string
-    artists: [
-        {
-            name: string
-            type: string
-            uri: string
-        }
-    ]
+    artists: {
+        name: string
+        type: string
+        uri: string
+    }[]
 }
