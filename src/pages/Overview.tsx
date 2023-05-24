@@ -51,7 +51,17 @@ const Overview = () => {
             if (data.devices.length !== 0) {
                 setActiveDevice(data.devices[0])
             } else {
-                toast.warn('No active devices available!')
+                toast.warn(<div>
+                    <h1 className='fw--semi-bold'>No Devices</h1>
+                    <div style={{display: 'grid', gridGap: '15px'}}>
+                        <span>In order to be able to play music, at least one device must be active</span>
+                        <a href='https://open.spotify.com/' target='_blank' rel='noreferrer noopener'>Open Spotify</a>
+                    </div>
+                </div>, {
+                    draggable: false,
+                    closeOnClick: false,
+                    style: {cursor: 'default'}
+                })
             }
         }
     }, [getUserDevices.data])
@@ -64,7 +74,7 @@ const Overview = () => {
                 id: string;
                 name: string;
                 followers: { total: number };
-                images: { url: string }[];
+                images: { height: number, width: number, url: string }[];
                 type: string;
                 genres: string[];
                 popularity: number;
@@ -74,7 +84,7 @@ const Overview = () => {
                     id: entry.id,
                     name: entry.name,
                     followers: entry.followers.total,
-                    imageUrl: entry.images[0].url,
+                    images: entry.images,
                     type: entry.type,
                     genres: entry.genres,
                     popularity: entry.popularity,
