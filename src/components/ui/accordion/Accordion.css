@@ -1,0 +1,25 @@
+#accordion-btn {
+    display: flex;
+    justify-content: space-between;
+
+    text-align: start;
+
+    padding: 15px 20px;
+
+    background-color: hsl(220, 20%, 97%);
+    border-radius: var(--br-r-small-medium);
+
+    cursor: pointer;
+
+    transition: margin-bottom 200ms ease-out;
+}
+
+#accordion-btn.active {
+    margin-bottom: 15px;
+}
+
+#panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 200ms ease-out;
+}
