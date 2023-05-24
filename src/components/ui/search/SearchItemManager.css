@@ -9,7 +9,7 @@
     overflow: auto;
 }
 
-#search-item--container > div {
+#search-item--container > div > div {
     display: grid;
     grid-gap: 10px;
 }
