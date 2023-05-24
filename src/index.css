@@ -9,10 +9,10 @@
     --nl-clr-1: hsl(234, 83%, 98%);
     --nl-clr-2: hsl(0, 0%, 100%);
 
-    --nl--nav-clr-1: hsl(240, 1%, 58%);
+    --nl--nav-clr-1: hsl(252, 3%, 67%);
+    --nl--nav-clr-2: hsl(240, 1%, 58%);
 
-    --nv-item-d-clr: hsl(217, 33%, 17%); /* Navigation items default color */
-    --nv-item--h--bg-clr: hsl(240, 14%, 97%); /* Navigation items hover background color */
+    --nv-item--h--bg-clr: hsl(258, 28%, 9%); /* Navigation items hover background color */
 
     --li-item-h-clr: hsl(210, 70%, 96%); /* List item hover */
     --li-item-ac-clr: hsl(211, 82%, 94%); /* List item active */
@@ -127,6 +127,10 @@ a {
     text-decoration: inherit;
 }
 
+a:hover {
+    text-decoration: underline;
+}
+
 ul {
     list-style-type: none;
 }
@@ -192,8 +196,12 @@ ul {
     color: var(--nl-clr-2);
 }
 
+.nv-clr--heading {
+    color: var(--nl--nav-clr-1);
+}
+
 .nv-clr--default {
-    color: var(--nv-item-d-clr);
+    color: var(--nl--nav-clr-2);
 }
 
 .fw-light {
@@ -277,8 +285,6 @@ ul {
 
     height: fit-content;
     width: 100%;
-
-    padding-bottom: 10px;
 
     background-color: var(--nl-clr-2);
 
