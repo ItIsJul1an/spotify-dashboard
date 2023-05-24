@@ -14,7 +14,8 @@ const FavArtistChip = ({artist}: FavArtistChipProps) => {
 
     return (
         <div id='fav-artist-chip-container'>
-            <img id='artist-img' src={artist.imageUrl} alt='Artist logo' aria-label='Artist logo'/>
+            <img id='artist-img' src={artist.images.length !== 0 ? artist.images[0].url : undefined} alt='Artist logo'
+                 aria-label='Artist logo'/>
             <div>
                 <h1>{artist.name}</h1>
                 <span className='fs-sc-body-1 fw--semi-bold'>{artist.followers} followers</span>
