@@ -16,12 +16,19 @@
     transition: unset;
 }
 
+#search-item img {
+    height: 60px;
+    width: 60px;
+
+    border-radius: 20%;
+}
+
 #search-item > div {
-    display: grid;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 #search-item > div > div {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+    display: grid;
 }
