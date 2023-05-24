@@ -4,9 +4,9 @@ import {Device} from '../../data/data_types'
 
 export interface UserDevicesStore {
     activeDevice: Device | undefined
-    devices: [Device]
+    devices: Device[]
     setActiveDevice: (device: Device) => void
-    setDevices: (devices: [Device]) => void
+    setDevices: (devices: Device[]) => void
 }
 
 const useUserDevicesStore = create(
