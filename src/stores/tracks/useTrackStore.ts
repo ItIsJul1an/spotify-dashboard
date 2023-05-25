@@ -24,7 +24,8 @@ const useTracksStore = create(
                 uri: '',
                 album: {
                     id: ''
-                }
+                },
+                artists: [{id: ''}]
             }],
             getTrackById: (id: string) => {
                 return get().tracks.find(track => track.id === id)
