@@ -11,4 +11,7 @@ export type Track = {
     album: {
         id: string
     }
+    artists: {
+        id: string
+    }[]
 }
