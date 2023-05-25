@@ -73,7 +73,7 @@ const Overview = () => {
             getFollowedArtists.data.artists.items.forEach((entry: {
                 id: string;
                 name: string;
-                followers: { total: number };
+                followers: { href: string, total: number };
                 images: { height: number, width: number, url: string }[];
                 type: string;
                 genres: string[];
@@ -83,7 +83,7 @@ const Overview = () => {
                 artistsTemp.push({
                     id: entry.id,
                     name: entry.name,
-                    followers: entry.followers.total,
+                    followers: entry.followers,
                     images: entry.images,
                     type: entry.type,
                     genres: entry.genres,
@@ -112,6 +112,7 @@ const Overview = () => {
                 album: {
                     id: data.item.album.id
                 },
+                artists: data.item.artists,
                 playing_progress_ms: data.progress_ms
             })
         }
