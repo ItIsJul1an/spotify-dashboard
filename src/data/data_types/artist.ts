@@ -1,5 +1,5 @@
 export type Artist = {
-    followers: number
+    followers: { href: string, total: number }
     genres: string[]
     id: string
     images: { height: number; width: number; url: string }[]
