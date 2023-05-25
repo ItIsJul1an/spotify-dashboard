@@ -18,7 +18,7 @@ const FavArtistChip = ({artist}: FavArtistChipProps) => {
                  aria-label='Artist logo'/>
             <div>
                 <h1>{artist.name}</h1>
-                <span className='fs-sc-body-1 fw--semi-bold'>{artist.followers} followers</span>
+                <span className='fs-sc-body-1 fw--semi-bold'>{artist.followers.total.toLocaleString()} followers</span>
             </div>
             <div>
                 <KebabMenuButton size='16' dropdownContent={
