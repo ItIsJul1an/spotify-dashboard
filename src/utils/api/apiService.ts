@@ -18,7 +18,7 @@ export const useGetUserTrendingTracksQuery = (limit: number = 20) => {
     )
 }
 
-export const useGetArtistQuery = (id: number) => {
+export const useGetArtistQuery = (id: string | undefined) => {
     const {accessToken} = useUserSessionStore()
 
     return useQuery(['artists'], () =>
@@ -26,9 +26,21 @@ export const useGetArtistQuery = (id: number) => {
                 headers: {Authorization: `Bearer ${accessToken}`}
             })
                 .then((res) => res.data), {
-            enabled: accessToken !== undefined && accessToken !== ''
+            enabled: accessToken !== undefined && accessToken !== '' && id !== undefined
         }
     )
+}
+
+export const useGetAlbumQuery = (id: string | undefined) => {
+    const {accessToken} = useUserSessionStore()
+
+    return useQuery(['album'], () =>
+        axios.get(`${webApiEndpoint}/albums/${id}`, {
+            headers: {Authorization: `Bearer ${accessToken}`}
+        })
+            .then((res) => res.data), {
+        enabled: accessToken !== undefined && accessToken !== '' && id !== undefined
+    })
 }
 
 export const useGetUserDevicesQuery = () => {
