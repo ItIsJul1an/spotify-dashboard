@@ -11,7 +11,7 @@ export interface ArtistsStore {
 const useArtistsStore = create(
     persist<ArtistsStore>((set, get) => ({
             followedArtists: [{
-                followers: 0,
+                followers: {href: '', total: 0},
                 genres: [''],
                 id: '',
                 images: [{height: 0, width: 0, url: ''}],
