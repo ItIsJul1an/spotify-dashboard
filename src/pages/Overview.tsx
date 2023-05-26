@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import {toast} from 'react-toastify'
 import Trending from '../components/ui/trending_section/Trending'
 import {
     useGetCurrentlyPlayingQuery,
@@ -7,13 +8,12 @@ import {
     useGetUserTrendingTracksQuery
 } from '../utils/api/apiService'
 import {Artist, TrendingTrack} from '../data/data_types'
-import useUserSessionStore from "../stores/user_session/userSessionStore"
-import useDeviceStore from "../stores/devices/useDeviceStore"
+import useUserSessionStore from '../stores/user_session/userSessionStore'
+import useDeviceStore from '../stores/devices/useDeviceStore'
+import useArtistStore from '../stores/artists/useArtistStore'
+import useTracksStore from '../stores/tracks/useTrackStore'
+import 'react-toastify/dist/ReactToastify.css'
 import './Layout.css'
-import useArtistStore from "../stores/artists/useArtistStore";
-import useTracksStore from "../stores/tracks/useTrackStore";
-import {toast, ToastContainer} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 
 const Overview = () => {
 
