@@ -1,9 +1,9 @@
 import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
-import axios from 'axios'
+import axios, {AxiosError} from 'axios'
+import {toast} from 'react-toastify'
 import {webApiEndpoint} from '../../data/configs/webApi/webApiConfig'
 import useUserSessionStore from '../../stores/user_session/userSessionStore'
-import useTracksStore from "../../stores/tracks/useTrackStore";
-import {useEffect} from "react";
+import useTracksStore from '../../stores/tracks/useTrackStore'
 
 export const useGetUserTrendingTracksQuery = (limit: number = 20) => {
     const {accessToken} = useUserSessionStore()
@@ -11,9 +11,9 @@ export const useGetUserTrendingTracksQuery = (limit: number = 20) => {
     return useQuery(['userTrendingTracks'], () =>
             axios.get(`${webApiEndpoint}/me/top/tracks?limit=${limit}`, {
                 headers: {Authorization: `Bearer ${accessToken}`}
-            })
-                .then((res) => res.data), {
-            enabled: accessToken !== undefined && accessToken !== ''
+            }).then((res) => res.data), {
+            enabled: accessToken !== undefined && accessToken !== '',
+            onError: (err) => toast.error('Something went wrong: ' + (err as AxiosError).message)
         }
     )
 }
@@ -24,9 +24,9 @@ export const useGetArtistQuery = (id: string | undefined) => {
     return useQuery(['artists'], () =>
             axios.get(`${webApiEndpoint}/me/artists/${id}`, {
                 headers: {Authorization: `Bearer ${accessToken}`}
-            })
-                .then((res) => res.data), {
-            enabled: accessToken !== undefined && accessToken !== '' && id !== undefined
+            }).then((res) => res.data), {
+            enabled: accessToken !== undefined && accessToken !== '' && id !== undefined,
+            onError: (err) => toast.error('Something went wrong: ' + (err as AxiosError).message)
         }
     )
 }
@@ -37,9 +37,9 @@ export const useGetAlbumQuery = (id: string | undefined) => {
     return useQuery(['album'], () =>
         axios.get(`${webApiEndpoint}/albums/${id}`, {
             headers: {Authorization: `Bearer ${accessToken}`}
-        })
-            .then((res) => res.data), {
-        enabled: accessToken !== undefined && accessToken !== '' && id !== undefined
+        }).then((res) => res.data), {
+        enabled: accessToken !== undefined && accessToken !== '' && id !== undefined,
+        onError: (err) => toast.error('Something went wrong: ' + (err as AxiosError).message)
     })
 }
 
@@ -49,9 +49,9 @@ export const useGetUserDevicesQuery = () => {
     return useQuery(['userDevices'], () =>
             axios.get(`${webApiEndpoint}/me/player/devices`, {
                 headers: {Authorization: `Bearer ${accessToken}`}
-            })
-                .then((res) => res.data), {
-            enabled: accessToken !== undefined && accessToken !== ''
+            }).then((res) => res.data), {
+            enabled: accessToken !== undefined && accessToken !== '',
+            onError: (err) => toast.error('Something went wrong: ' + (err as AxiosError).message)
         }
     )
 }
@@ -62,9 +62,9 @@ export const useGetFollowedArtistsQuery = () => {
     return useQuery(['followedArtists'], () =>
             axios.get(`${webApiEndpoint}/me/following?type=artist&limit=50`, {
                 headers: {Authorization: `Bearer ${accessToken}`}
-            })
-                .then((res) => res.data), {
-            enabled: accessToken !== undefined && accessToken !== ''
+            }).then((res) => res.data), {
+            enabled: accessToken !== undefined && accessToken !== '',
+            onError: (err) => toast.error('Something went wrong: ' + (err as AxiosError).message)
         }
     )
 }
@@ -75,9 +75,9 @@ export const useGetCheckFollowArtistQuery = (artist: string) => {
     return useQuery(['checkFollowArtist'], () =>
             axios.get(`${webApiEndpoint}/me/following/contains?type=artist&ids=${artist}`, {
                 headers: {Authorization: `Bearer ${accessToken}`}
-            })
-                .then((res) => res.data), {
-            enabled: accessToken !== undefined && accessToken !== ''
+            }).then((res) => res.data), {
+            enabled: accessToken !== undefined && accessToken !== '',
+            onError: (err) => toast.error('Something went wrong: ' + (err as AxiosError).message)
         }
     )
 }
@@ -88,9 +88,9 @@ export const useGetCheckFollowUserQuery = (user: string) => {
     return useQuery(['checkFollowUser'], () =>
             axios.get(`${webApiEndpoint}/me/following/contains?type=user&ids=${user}`, {
                 headers: {Authorization: `Bearer ${accessToken}`}
-            })
-                .then((res) => res.data), {
-            enabled: accessToken !== undefined && accessToken !== ''
+            }).then((res) => res.data), {
+            enabled: accessToken !== undefined && accessToken !== '',
+            onError: (err) => toast.error('Something went wrong: ' + (err as AxiosError).message)
         }
     )
 }
@@ -101,9 +101,9 @@ export const useGetSearchQuery = (searchQuery: string = '') => {
     return useQuery(['search'], () =>
             axios.get(`${webApiEndpoint}/search?q=${searchQuery}&type=album%2Cplaylist%2Cartist%2Ctrack`, {
                 headers: {Authorization: `Bearer ${accessToken}`}
-            })
-                .then((res) => res.data), {
-            enabled: accessToken !== undefined && accessToken !== '' && searchQuery !== '' && searchQuery !== ' '
+            }).then((res) => res.data), {
+            enabled: accessToken !== undefined && accessToken !== '' && searchQuery !== '' && searchQuery !== ' ',
+            onError: (err) => toast.error('Something went wrong: ' + (err as AxiosError).message)
         }
     )
 }
@@ -115,10 +115,10 @@ export const useGetCurrentlyPlayingQuery = () => {
     return useQuery(['currentlyPlayingTrack'], () =>
         axios.get(`${webApiEndpoint}/me/player/currently-playing`, {
             headers: {Authorization: `Bearer ${accessToken}`}
-        })
-            .then((res) => res.data), {
+        }).then((res) => res.data), {
         enabled: accessToken !== undefined && accessToken !== '',
-        refetchInterval: playingTrack && playingTrack.playing_progress_ms ? playingTrack.duration_ms - playingTrack.playing_progress_ms + 400 : false
+        refetchInterval: playingTrack && playingTrack.playing_progress_ms ? playingTrack.duration_ms - playingTrack.playing_progress_ms + 400 : false,
+        onError: (err) => toast.error('Something went wrong: ' + (err as AxiosError).message)
     })
 }
 
@@ -150,7 +150,8 @@ export const usePlayTrackMutation = (device?: string) => {
             setTimeout(() => {
                 queryClient.invalidateQueries(['currentlyPlayingTrack'])
             }, 400)
-        }
+        },
+        onError: (err) => toast.error('Cannot play track: ' + (err as AxiosError).message)
     })
 }
 
@@ -169,7 +170,8 @@ export const usePauseTrackMutation = (device?: string) => {
             setTimeout(() => {
                 queryClient.invalidateQueries(['currentlyPlayingTrack'])
             }, 400)
-        }
+        },
+        onError: (err) => toast.error('Cannot pause track: ' + (err as AxiosError).message)
     })
 }
 
@@ -187,7 +189,8 @@ export const useFollowArtistMutation = () => {
                 queryClient.invalidateQueries(['followedArtists'])
                 queryClient.invalidateQueries(['checkFollowArtist'])
             }, 400)
-        }
+        },
+        onError: (err) => toast.error('Cannot follow artist: ' + (err as AxiosError).message)
     })
 }
 
@@ -205,6 +208,7 @@ export const useUnfollowArtistMutation = () => {
                 queryClient.invalidateQueries(['followedArtists'])
                 queryClient.invalidateQueries(['checkFollowArtist'])
             }, 400)
-        }
+        },
+        onError: (err) => toast.error('Cannot unfollow artist: ' + (err as AxiosError).message)
     })
 }
