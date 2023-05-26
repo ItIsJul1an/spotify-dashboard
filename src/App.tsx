@@ -11,6 +11,7 @@ import Action from './components/ui/action_section/Action'
 import PrivateRoute, {PrivateRouteProps} from './react_router_routes/PrivateRoute'
 import ProtectedRoute, {ProtectedRouteProps} from './react_router_routes/ProtectedRoute'
 import useUserSessionStore from './stores/user_session/userSessionStore'
+import {ToastContainer} from "react-toastify";
 
 function App() {
 
@@ -28,7 +29,7 @@ function App() {
 
     return (
         <section id='main-section' style={{backgroundColor: 'var(--nl-clr-2)'}}>
-
+            <ToastContainer/>
             {
                 accessToken !== undefined && accessToken !== '' ?
                     <>
