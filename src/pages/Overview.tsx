@@ -121,7 +121,6 @@ const Overview = () => {
     return (
         <div id='layout-container'>
             <Trending trendingTracks={trendingTracks}/>
-            <ToastContainer/>
         </div>
     )
 }
