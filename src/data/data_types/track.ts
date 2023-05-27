@@ -10,8 +10,11 @@ export type Track = {
     uri: string
     album: {
         id: string
+        images: { height: number; width: number; url: string }[]
+        uri: string
     }
     artists: {
         id: string
+        uri: string
     }[]
 }
