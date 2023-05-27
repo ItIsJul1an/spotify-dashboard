@@ -4,10 +4,10 @@ import {Track} from '../../data/data_types'
 
 export interface TracksStore {
     playingTrack: Track | undefined
-    tracks: [Track]
+    tracks: Track[]
     getTrackById: (id: string) => Track | undefined
     setPlayingTrack: (track: Track) => void
-    setTracks: (tracks: [Track]) => void
+    setTracks: (tracks: Track[]) => void
 }
 
 const useTracksStore = create(
@@ -23,9 +23,11 @@ const useTracksStore = create(
                 type: '',
                 uri: '',
                 album: {
-                    id: ''
+                    id: '',
+                    images: [{height: 0, width: 0, url: ''}],
+                    uri: ''
                 },
-                artists: [{id: ''}]
+                artists: [{id: '', uri: ''}]
             }],
             getTrackById: (id: string) => {
                 return get().tracks.find(track => track.id === id)
