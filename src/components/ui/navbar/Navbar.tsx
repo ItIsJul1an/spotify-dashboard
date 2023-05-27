@@ -9,11 +9,11 @@ const Navbar = () => {
     return (
         <nav id='navbar-container'>
             <div>
-                <div className='nav-action md-menu'>
+                <div className='nav-action md-menu' onClick={() => window.history.back()}>
                     <ArrowBackRoundedIcon/>
                 </div>
 
-                <div className='nav-action md-menu'>
+                <div className='nav-action md-menu' onClick={() => window.history.forward()}>
                     <ArrowForwardRoundedIcon/>
                 </div>
             </div>
