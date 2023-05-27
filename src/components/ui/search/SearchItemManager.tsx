@@ -15,8 +15,8 @@ const SearchItemManager = ({data}: SearchItemManagerProps) => {
             <div>
                 <Accordion header='Albums' content={<>
                     {
-                        data.albums.items.map((item: Album) => (
-                            <SearchItem item={item}/>
+                        data.albums.items.map((item: Album, index: number) => (
+                            <SearchItem key={`album-search-item-${index}`} item={item}/>
                         ))
                     }
                 </>}/>
@@ -25,8 +25,8 @@ const SearchItemManager = ({data}: SearchItemManagerProps) => {
             <div>
                 <Accordion header='Artists' content={<>
                     {
-                        data.artists.items.map((item: Artist) => (
-                            <SearchItem item={item}/>
+                        data.artists.items.map((item: Artist, index: number) => (
+                            <SearchItem key={`artist-search-item-${index}`} item={item}/>
                         ))
                     }
                 </>}/>
@@ -35,8 +35,8 @@ const SearchItemManager = ({data}: SearchItemManagerProps) => {
             <div>
                 <Accordion header='Tracks' content={<>
                     {
-                        data.tracks.items.map((item: Track) => (
-                            <SearchItem item={item}/>
+                        data.tracks.items.map((item: Track, index: number) => (
+                            <SearchItem key={`track-search-item-${index}`} item={item}/>
                         ))
                     }
                 </>}/>
