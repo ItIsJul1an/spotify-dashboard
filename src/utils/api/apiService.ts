@@ -21,7 +21,7 @@ export const useGetUserTrendingTracksQuery = (limit: number = 20) => {
 export const useGetArtistQuery = (id: string | undefined) => {
     const {accessToken} = useUserSessionStore()
 
-    return useQuery(['artists'], () =>
+    return useQuery(['artists', id], () =>
             axios.get(`${webApiEndpoint}/me/artists/${id}`, {
                 headers: {Authorization: `Bearer ${accessToken}`}
             }).then((res) => res.data), {
@@ -34,7 +34,7 @@ export const useGetArtistQuery = (id: string | undefined) => {
 export const useGetAlbumQuery = (id: string | undefined) => {
     const {accessToken} = useUserSessionStore()
 
-    return useQuery(['album'], () =>
+    return useQuery(['album', id], () =>
         axios.get(`${webApiEndpoint}/albums/${id}`, {
             headers: {Authorization: `Bearer ${accessToken}`}
         }).then((res) => res.data), {
@@ -69,14 +69,14 @@ export const useGetFollowedArtistsQuery = () => {
     )
 }
 
-export const useGetCheckFollowArtistQuery = (artist: string) => {
+export const useGetCheckFollowArtistQuery = (artist: string | undefined) => {
     const {accessToken} = useUserSessionStore()
 
-    return useQuery(['checkFollowArtist'], () =>
+    return useQuery(['checkFollowArtist', artist], () =>
             axios.get(`${webApiEndpoint}/me/following/contains?type=artist&ids=${artist}`, {
                 headers: {Authorization: `Bearer ${accessToken}`}
             }).then((res) => res.data), {
-            enabled: accessToken !== undefined && accessToken !== '',
+            enabled: accessToken !== undefined && accessToken !== '' && artist !== '',
             onError: (err) => toast.error('Something went wrong: ' + (err as AxiosError).message)
         }
     )
@@ -85,7 +85,7 @@ export const useGetCheckFollowArtistQuery = (artist: string) => {
 export const useGetCheckFollowUserQuery = (user: string) => {
     const {accessToken} = useUserSessionStore()
 
-    return useQuery(['checkFollowUser'], () =>
+    return useQuery(['checkFollowUser', user], () =>
             axios.get(`${webApiEndpoint}/me/following/contains?type=user&ids=${user}`, {
                 headers: {Authorization: `Bearer ${accessToken}`}
             }).then((res) => res.data), {
@@ -133,12 +133,12 @@ export const usePlayTrackMutation = (device?: string) => {
         if (track.includes('track')) {
             data = {
                 'uris': [track],
-                'position_ms': playingTrack && playingTrack.playing_progress_ms ? playingTrack.playing_progress_ms : 0
+                'position_ms': playingTrack && playingTrack.playing_progress_ms && playingTrack.uri === track ? playingTrack.playing_progress_ms : 0
             }
         } else {
             data = {
                 'context_uri': track,
-                'position_ms': playingTrack && playingTrack.playing_progress_ms ? playingTrack.playing_progress_ms : 0
+                'position_ms': playingTrack && playingTrack.playing_progress_ms && playingTrack.uri === track ? playingTrack.playing_progress_ms : 0
             }
         }
 
@@ -187,7 +187,6 @@ export const useFollowArtistMutation = () => {
         onSuccess: () => {
             setTimeout(() => {
                 queryClient.invalidateQueries(['followedArtists'])
-                queryClient.invalidateQueries(['checkFollowArtist'])
             }, 400)
         },
         onError: (err) => toast.error('Cannot follow artist: ' + (err as AxiosError).message)
@@ -206,7 +205,6 @@ export const useUnfollowArtistMutation = () => {
         onSuccess: () => {
             setTimeout(() => {
                 queryClient.invalidateQueries(['followedArtists'])
-                queryClient.invalidateQueries(['checkFollowArtist'])
             }, 400)
         },
         onError: (err) => toast.error('Cannot unfollow artist: ' + (err as AxiosError).message)
