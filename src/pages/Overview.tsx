@@ -14,6 +14,7 @@ import useArtistStore from '../stores/artists/useArtistStore'
 import useTracksStore from '../stores/tracks/useTrackStore'
 import 'react-toastify/dist/ReactToastify.css'
 import './Layout.css'
+import {da} from "date-fns/locale";
 
 const Overview = () => {
 
@@ -99,7 +100,7 @@ const Overview = () => {
     useEffect(() => {
         const data = getPlayingTrack.data
 
-        if (getPlayingTrack.isSuccess && data.item !== undefined) {
+        if (getPlayingTrack.isSuccess && data.item !== undefined && data.item !== null) {
             setPlayingTrack({
                 id: data.item.id,
                 uri: data.item.uri,
@@ -110,7 +111,9 @@ const Overview = () => {
                 is_local: data.item.is_local,
                 duration_ms: data.item.duration_ms,
                 album: {
-                    id: data.item.album.id
+                    id: data.item.album.id,
+                    images: data.item.album.images,
+                    uri: data.item.album.uri
                 },
                 artists: data.item.artists,
                 playing_progress_ms: data.progress_ms
