@@ -8,8 +8,8 @@ const SidebarItemsManager = () => {
     return (
         <ul id='sidebar-items-container'>
             {
-                SidebarItems.map((group) => {
-                    return <div id='group-items-container'>
+                SidebarItems.map((group, index) => {
+                    return <div key={`sidebar-group-item-${index}`} id='group-items-container'>
                         <h1 className='fs-tr-body-1 fw--semi-bold nv-clr--heading'>{group.name}</h1>
                         {
                             group.items.map((item, index) => (
