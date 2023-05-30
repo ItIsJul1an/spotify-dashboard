@@ -33,7 +33,6 @@ const SearchDialog = ({setRender}: SearchDialogProps) => {
                     searchResult ? <SearchItemManager data={searchResult}/> :
                         <div id='recent-search-container'>
                             <div className='stick-to-head'>
-                                <h1>Recent</h1>
                                 <h1>Recent Interaction</h1>
                                 {
                                     recentSearches.length !== 0 ? <button id='clear-recent'
