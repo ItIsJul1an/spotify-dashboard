@@ -10,7 +10,10 @@ const Sidebar = () => {
             <div id='side-content-container'>
                 <div id='side-image-container'>
                     <img id='spotify-sidebar-logo' src={spotify} alt='spotify logo'/>
-                    <h1><h1 style={{color: 'hsl(127, 43%, 52%)'}}>Spotify</h1>Dashboard</h1>
+                    <div>
+                        <h1 style={{color: 'hsl(127, 43%, 52%)'}}>Spotify</h1>
+                        <h1>Dashboard</h1>
+                    </div>
                 </div>
 
                 <nav className='side-content-nav'>
