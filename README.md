@@ -12,28 +12,64 @@ This project is designed for music enthusiasts who want a centralized platform t
 
 - [@ItIsJul1an](https://www.github.com/ItIsJul1an)
 
-## Color Reference
-
-| Color                             | Hsl                                                                                    |
-| ----------------------------------| ---------------------------------------------------------------------------------------|
-| Accent Color                      | ![hsl(258, 28%, 9%)](https://via.placeholder.com/10/110e18?text=+) hsl(258, 28%, 9%)   |
-| Primary Color                     | ![hsl(255, 5%, 16%)](https://via.placeholder.com/10/222124?text=+) hsl(255, 5%, 16%)   |
-| Secondary Color                   | ![hsl(252, 2%, 49%)](https://via.placeholder.com/10/68676b?text=+) hsl(252, 2%, 49%)   |
-| Navigation Color 1                | ![hsl(234, 83%, 98%)](https://via.placeholder.com/10/cfd0d6?text=+) hsl(234, 83%, 98%) |
-| Navigation Color 2                | ![hsl(0, 0%, 100%)](https://via.placeholder.com/10/7c7c7e?text=+) hsl(0, 0%, 100%)     |
-| Navigation Hover Color            | ![hsl(258, 28%, 9%)](https://via.placeholder.com/10/110e18?text=+) hsl(258, 28%, 9%)   |
-| Input Hover Color                 | ![hsl(239, 84%, 67%)](https://via.placeholder.com/10/5457cc?text=+) hsl(239, 84%, 67%) |
-| Input Active Color                | ![hsl(228, 96%, 89%)](https://via.placeholder.com/10/a9b2d6?text=+) hsl(228, 96%, 89%) |
-| Menu Item Color                   | ![hsl(0, 0%, 100%)](https://via.placeholder.com/10/ffffff?text=+) hsl(0, 0%, 100%)     |
-| Scrollbar Thumb Color             | ![hsl(196, 15%, 86%)](https://via.placeholder.com/10/b4bbbe?text=+) hsl(196, 15%, 86%) |
-| Scrollbar Thumb Hover Color       | ![hsl(190, 15%, 70%)](https://via.placeholder.com/10/8d9da0?text=+) hsl(190, 15%, 70%) |
 
 ## Tech Stack
 
 **Dashboard:** React, Zustand, CSS
 
 **Authentification:** OAuth2.0
+## Color Reference
 
+| Color                     | Hsl                                                                                  |
+| --------------------------| -------------------------------------------------------------------------------------|
+| Accent Color              | ![hsl(258, 28%, 9%)](https://via.placeholder.com/10/110e18?text=+) hsl(258, 28%, 9%) |
+| Primary Color             | ![hsl(255, 5%, 16%)](https://via.placeholder.com/10/222124?text=+) hsl(255, 5%, 16%) |
+| Secondary Color           | ![hsl(252, 2%, 49%)](https://via.placeholder.com/10/68676b?text=+) hsl(252, 2%, 49%) |
+| Navigation Color 1        | ![hsl(234, 83%, 98%)](https://via.placeholder.com/10/cfd0d6?text=+) hsl(234, 83%, 98%) |
+| Navigation Color 2        | ![hsl(0, 0%, 100%)](https://via.placeholder.com/10/7c7c7e?text=+) hsl(0, 0%, 100%) |
+| Navigation Hover Color    | ![hsl(258, 28%, 9%)](https://via.placeholder.com/10/110e18?text=+) hsl(258, 28%, 9%) |
+| Input Hover Color    | ![hsl(239, 84%, 67%)](https://via.placeholder.com/10/5457cc?text=+) hsl(239, 84%, 67%) |
+| Input Active Color    | ![hsl(228, 96%, 89%)](https://via.placeholder.com/10/a9b2d6?text=+) hsl(228, 96%, 89%) |
+| Menu Item Color    | ![hsl(0, 0%, 100%)](https://via.placeholder.com/10/ffffff?text=+) hsl(0, 0%, 100%) |
+| Scrollbar Thumb Color    | ![hsl(196, 15%, 86%)](https://via.placeholder.com/10/b4bbbe?text=+) hsl(196, 15%, 86%) |
+| Scrollbar Thumb Hover Color    | ![hsl(190, 15%, 70%)](https://via.placeholder.com/10/8d9da0?text=+) hsl(190, 15%, 70%) |
+
+## Contributing
+
+Contributions are always welcome!
+
+### Reporting Issues
+
+If you have found what you think is a bug, please don't be shy to open an issue.
+
+### Suggesting new features
+
+If you are here to suggest a feature, first create an issue if it does not already exist. From there,I will manage to implement it.
+
+## Local Installation
+
+Before getting started, clone the project and install the npm dependencies by running `npm i`
+
+```bash
+git clone https://github.com/ItIsJul1an/spotify-dashboard.git
+cd spotify-dashboard
+npm i
+```
+    
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your `.env` file
+
+- `REACT_APP_SPOTIFY_CLIENT_ID`
+- `REACT_APP_REDIRECT_URI`
+
+\
+**Example Usage**
+
+```
+REACT_APP_SPOTIFY_CLIENT_ID=YOUR_CLIENT_ID
+REACT_APP_REDIRECT_URI=http://localhost:3000/login
+```
 ## Deployment
 
 ### `npm start`
@@ -68,17 +104,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-## Environment Variables
-
-To run this project, you will need to add the following environment variables to your `.env` file
-
-- `REACT_APP_SPOTIFY_CLIENT_ID`
-- `REACT_APP_REDIRECT_URI`
-
-\
-**Example Usage**
-
-```
-REACT_APP_SPOTIFY_CLIENT_ID=YOUR_CLIENT_ID
-REACT_APP_REDIRECT_URI=http://localhost:3000/login
-```
