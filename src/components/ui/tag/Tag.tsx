@@ -1,11 +1,15 @@
-import React from 'react'
+import React, {HTMLAttributes} from 'react'
 import './Tag.css'
 
-const Tag = () => {
+interface TagProps {
+    displayText: string
+}
+
+const Tag = ({displayText, ...props}: TagProps & HTMLAttributes<HTMLDivElement>) => {
 
     return (
-        <div>
-
+        <div id='tag' {...props}>
+            <b className='fw--semi-bold'>{displayText}</b>
         </div>
     )
 }
