@@ -1,10 +1,13 @@
 import React from 'react'
 import {intervalToDuration} from 'date-fns'
-import {Album, Artist, Track} from '../../../data/data_types'
+import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded'
 import spotify from '../../../data/images/spotify.svg'
+import {Album, Artist, Track} from '../../../data/data_types'
+import PlayButton from '../../form/buttons/filled/playButton/PlayButton'
 import useRecentSearchStore from '../../../stores/search/recentSearchStore'
 import './SearchItem.css'
-import PlayButton from "../../form/buttons/filled/playButton/PlayButton";
+import FollowButton from "../../form/buttons/outlined/followButton/FollowButton";
+import FavouriteButton from "../../form/buttons/outlined/favouriteButton/FavouriteButton";
 
 interface SearchItemProps {
     item: Album | Artist | Track
@@ -14,7 +17,12 @@ const SearchItem = ({item}: SearchItemProps) => {
 
     const {addRecentSearch} = useRecentSearchStore()
 
-    const trackTimeDuration = (item as Track).uri.includes('track') ? intervalToDuration({
+    const album: Album | undefined = (item as Album).uri.includes('album') ? item as Album : undefined
+    //const playlist: Playlist | undefined = (item as Playlist).uri.includes('playlist') ? item as Playlist : undefined
+    const artist: Artist | undefined = (item as Artist).uri.includes('artist') ? item as Artist : undefined
+    const track: Track | undefined = (item as Track).uri.includes('track') ? item as Track : undefined
+
+    const trackTimeDuration = track ? intervalToDuration({
         start: 0,
         end: (item as Track).duration_ms
     }) : null
@@ -24,51 +32,54 @@ const SearchItem = ({item}: SearchItemProps) => {
     }
 
     return (
-        <div id='search-item' onClick={onClickHandle}>
+        <div id='search-item'>
             <div>
                 {
-                    (item as Album).uri.includes('album') ?
-                        (item as Album).images.length !== 0 ?
-                            <img src={(item as Album).images[0].url} alt='album'/> :
+                    album ?
+                        album.images.length !== 0 ?
+                            <img src={album.images[0].url} alt='album'/> :
                             <img src={spotify} alt='spotify logo'/> :
                         null
                 }
                 {
-                    (item as Artist).uri.includes('artist') ?
-                        (item as Artist).images.length !== 0 ?
-                            <img src={(item as Artist).images[0].url} alt='artist'/> :
+                    artist ?
+                        artist.images.length !== 0 ?
+                            <img src={artist.images[0].url} alt='artist'/> :
                             <img src={spotify} alt='spotify logo'/> :
                         null
                 }
                 {
-                    (item as Track).uri.includes('track') ?
-                        <img src={(item as Track).album.images[0].url} alt='track'/> : null
+                    track ?
+                        <img src={track.album.images[0].url} alt='track'/> : null
                 }
                 <div>
-                    {item.name}
-                    <span>
+                    <h1 className='fw--semi-bold'>{item.name} • {item.type.slice(0, 1).toUpperCase() + item.type.substring(1)}</h1>
+
+                    <div id='information-wrapper'>
                         {
-                            (item as Album).uri.includes('album') ? new Date((item as Album).release_date).getFullYear() : null
+                            album ?
+                                <div>
+                                    <CalendarMonthRoundedIcon fontSize='small'/>
+                                    {new Date(album.release_date).getFullYear()}
+                                </div> : null
                         }
                         {
-                            (item as Album).uri.includes('album') ? ' • ' : null
+                            album ? ' • ' : null
                         }
                         {
-                            (item as Album).uri.includes('album') ?
-                                (item as Album).artists.map(artist => artist.name).join(', ')
+                            album ?
+                                album.artists.map(artist => artist.name).join(', ')
                                 : null
                         }
                         {
-                            (item as Artist).uri.includes('artist') ? (item as Artist).followers.total.toLocaleString() + ' followers' : null
+                            artist ? artist.followers.total.toLocaleString() + ' followers' : null
                         }
                         {
                             trackTimeDuration ? `${trackTimeDuration.minutes}:${trackTimeDuration.seconds}` : null
                         }
-                    </span>
+                    </div>
                 </div>
             </div>
-            <PlayButton trackUri={item.uri}
-                        style={{backgroundColor: 'hsl(0, 0%, 0%)', color: 'hsl(0, 0%, 100%)'}}/>
         </div>
     )
 }
