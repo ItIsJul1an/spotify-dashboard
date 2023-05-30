@@ -1,12 +1,6 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {createPortal} from 'react-dom'
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded'
-import {Album} from '../../../data/data_types'
-import useOnClickOutside from '../../../hooks/useOnClickOutside'
-import useRecentSearchStore from '../../../stores/search/recentSearchStore'
-import SearchBar from '../search_bar/SearchBar'
-import SearchItem from '../../ui/search/SearchItem'
-import SearchItemManager from '../../ui/search/SearchItemManager'
 import './Search.css'
 import SearchDialog from "./SearchDialog";
 
