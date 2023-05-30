@@ -34,6 +34,7 @@ const SearchDialog = ({setRender}: SearchDialogProps) => {
                         <div id='recent-search-container'>
                             <div className='stick-to-head'>
                                 <h1>Recent</h1>
+                                <h1>Recent Interaction</h1>
                                 {
                                     recentSearches.length !== 0 ? <button id='clear-recent'
                                                                           onClick={() => resetRecentSearch()}>Clear</button> : null
