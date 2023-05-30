@@ -1,6 +1,6 @@
 import React from 'react'
 import {Route, Routes} from 'react-router'
-import LandingPage from './pages/LandingPage/LandingPage'
+import LandingPage from './pages/landing_page/LandingPage'
 import Overview from './pages/Overview'
 import FavSongsPage from './pages/fav/songs/FavSongsPage'
 import FavAlbumsPage from './pages/fav/albums/FavAlbumsPage'
@@ -12,6 +12,7 @@ import PrivateRoute, {PrivateRouteProps} from './react_router_routes/PrivateRout
 import ProtectedRoute, {ProtectedRouteProps} from './react_router_routes/ProtectedRoute'
 import useUserSessionStore from './stores/user_session/userSessionStore'
 import {ToastContainer} from "react-toastify";
+import NotFound from "./pages/not_found/NotFound";
 
 function App() {
 
@@ -19,12 +20,12 @@ function App() {
 
     const defaultPrivateRouteProps: Omit<PrivateRouteProps, 'outlet'> = {
         isAuthenticated: accessToken !== undefined && accessToken !== '',
-        authenticationPath: '/',
+        authenticationPath: '/login',
     }
 
     const defaultProtectedRouteProps: Omit<ProtectedRouteProps, 'outlet'> = {
         isAuthenticated: accessToken !== undefined && accessToken !== '',
-        redirectPath: '/dashboard',
+        redirectPath: '/',
     }
 
     return (
@@ -41,22 +42,23 @@ function App() {
             }
 
             <Routes>
-                <Route path='/dashboard'
+                <Route index={true}
                        element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<Overview/>}/>}/>
-                <Route path='dashboard/trends'
+                <Route path='trends'
                        element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<Overview/>}/>}/>
-                <Route path='dashboard/new'
+                <Route path='new'
                        element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<Overview/>}/>}/>
-                <Route path='dashboard/events'
+                <Route path='events'
                        element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<Overview/>}/>}/>
-                <Route path='dashboard/fav/songs'
+                <Route path='fav/songs'
                        element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<FavSongsPage/>}/>}/>
-                <Route path='dashboard/fav/artists'
+                <Route path='fav/artists'
                        element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<FavArtistsPage/>}/>}/>
-                <Route path='dashboard/fav/albums'
+                <Route path='fav/albums'
                        element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<FavAlbumsPage/>}/>}/>
-                <Route path='*'
+                <Route path='login'
                        element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<LandingPage/>}/>}/>
+                <Route path='*' element={<NotFound/>}/>
             </Routes>
         </section>
     )
