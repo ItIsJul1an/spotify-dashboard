@@ -80,6 +80,21 @@ const SearchItem = ({item}: SearchItemProps) => {
                     </div>
                 </div>
             </div>
+            {
+                artist ?
+                    <FollowButton id='search-follow' artistUri={artist.id}
+                                  displayContent='image'
+                                  onClickHandle={onClickHandle}/>
+                    :
+                    <div>
+                        <PlayButton id='search-play' trackUri={item.uri}
+                                    displayContent='image'
+                                    onClickHandle={onClickHandle}/>
+                        <FavouriteButton id='search-favourite' itemId={item.id}
+                                         itemType={item.type} displayContent='image'
+                                         onClickHandle={onClickHandle}/>
+                    </div>
+            }
         </div>
     )
 }
