@@ -5,6 +5,7 @@ import LocalActivityRoundedIcon from '@mui/icons-material/LocalActivityRounded'
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded'
 import GroupsRoundedIcon from '@mui/icons-material/GroupsRounded'
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded'
+import HistoryRoundedIcon from '@mui/icons-material/HistoryRounded'
 
 export const SidebarItems = [
     {
@@ -12,13 +13,18 @@ export const SidebarItems = [
         items: [
             {
                 title: 'Home',
-                url: 'dashboard',
+                url: '',
                 image: HomeRoundedIcon
             },
             {
                 title: 'Trends',
-                url: 'dashboard/trends',
+                url: 'trends',
                 image: WhatshotRoundedIcon
+            },
+            {
+                title: 'History',
+                url: 'history',
+                image: HistoryRoundedIcon
             }
         ]
     },
@@ -27,12 +33,12 @@ export const SidebarItems = [
         items: [
             {
                 title: 'New and Notable',
-                url: 'dashboard/new',
+                url: 'new',
                 image: NewReleasesRoundedIcon
             },
             {
                 title: 'Events',
-                url: 'dashboard/events',
+                url: 'events',
                 image: LocalActivityRoundedIcon
             }
         ]
@@ -42,17 +48,17 @@ export const SidebarItems = [
         items: [
             {
                 title: 'Songs',
-                url: 'dashboard/fav/songs',
+                url: 'fav/songs',
                 image: FavoriteBorderRoundedIcon
             },
             {
                 title: 'Artists',
-                url: 'dashboard/fav/artists',
+                url: 'fav/artists',
                 image: GroupsRoundedIcon
             },
             {
                 title: 'Albums',
-                url: 'dashboard/fav/albums',
+                url: 'fav/albums',
                 image: StarBorderRoundedIcon
             }
         ]
