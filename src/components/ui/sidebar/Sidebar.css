@@ -43,6 +43,8 @@
     width: 211px;
 
     padding: 13px;
+
+    color: inherit;
     border-radius: var(--br-r-medium);
 
     cursor: pointer;
