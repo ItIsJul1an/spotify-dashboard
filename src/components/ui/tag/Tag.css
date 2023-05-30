@@ -1,0 +1,10 @@
+#tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 2px 8px;
+
+    border: 1px solid;
+    border-radius: var(--br-r-extra-small);
+}
