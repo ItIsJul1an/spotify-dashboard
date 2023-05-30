@@ -42,6 +42,8 @@ const SearchDialog = ({setRender}: SearchDialogProps) => {
                             {
                                 recentSearches.length !== 0 ? recentSearches.map((item: Album) => (
                                     <SearchItem item={item}/>
+                                recentSearches.length !== 0 ? recentSearches.map((item: Album, index: number) => (
+                                    <SearchItem key={`artist-search-item-${index}`} item={item}/>
                                 )) : <span>No recent searches</span>
                             }
                         </div>
