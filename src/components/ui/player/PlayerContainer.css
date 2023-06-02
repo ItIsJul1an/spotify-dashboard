@@ -1,0 +1,32 @@
+#player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 450px;
+
+    padding: var(--pd-t-big);
+
+    background-color: var(--nl-clr-2);
+    border-radius: var(--br-r-medium);
+}
+
+#player--image-wrapper {
+    border-radius: var(--br-r-medium);
+
+
+    overflow: hidden;
+}
+
+#player--image-wrapper img {
+    width: 100%;
+
+    border-radius: var(--br-r-medium);
+
+    object-fit: cover;
+    aspect-ratio: 4/3.5;
+}
+
+#progress-indicator {
+
+}
