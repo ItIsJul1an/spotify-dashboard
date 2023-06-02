@@ -8,6 +8,7 @@ export interface TracksStore {
     getTrackById: (id: string) => Track | undefined
     setPlayingTrack: (track: Track) => void
     setTracks: (tracks: Track[]) => void
+    setPlayingTrackProgress: (progress: number) => void
 }
 
 const useTracksStore = create(
@@ -20,6 +21,7 @@ const useTracksStore = create(
                 popularity: 0,
                 duration_ms: 0,
                 is_playing: false,
+                timestamp: 0,
                 type: '',
                 uri: '',
                 album: {
@@ -27,7 +29,7 @@ const useTracksStore = create(
                     images: [{height: 0, width: 0, url: ''}],
                     uri: ''
                 },
-                artists: [{id: '', uri: ''}]
+                artists: [{id: '', uri: '', name: ''}]
             }],
             getTrackById: (id: string) => {
                 return get().tracks.find(track => track.id === id)
@@ -38,6 +40,17 @@ const useTracksStore = create(
             setTracks: (tracks) => set(prev => ({
                 tracks: prev.tracks = tracks
             })),
+            setPlayingTrackProgress: (progress) => {
+                const track = get().playingTrack
+
+                if (track) {
+                    set(prev => (
+                        prev.playingTrack ? {
+                            playingTrack: {...prev.playingTrack, playing_progress_ms: progress}
+                        } : {}
+                    ))
+                }
+            },
         }), {
             name: 'tracks-store',
             storage: createJSONStorage(() => sessionStorage)
