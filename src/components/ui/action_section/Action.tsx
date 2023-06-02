@@ -1,6 +1,7 @@
 import React from 'react'
 import FavArtists from '../fav_artists_section/FavArtists'
 import './Action.css'
+import PlayerContainer from "../player/PlayerContainer";
 
 const Action = () => {
 
@@ -15,6 +16,8 @@ const Action = () => {
                 <h1 className='fs-sc-1'>Fav Artists</h1>
                 <FavArtists/>
             </div>
+
+            <PlayerContainer/>
         </div>
     )
 }
