@@ -5,6 +5,7 @@ export type Track = {
     popularity: number
     duration_ms: number
     is_playing: boolean
+    timestamp: number
     playing_progress_ms?: number
     type: string
     uri: string
@@ -16,5 +17,6 @@ export type Track = {
     artists: {
         id: string
         uri: string
+        name: string
     }[]
 }
