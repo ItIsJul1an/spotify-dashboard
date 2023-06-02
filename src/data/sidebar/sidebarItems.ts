@@ -1,5 +1,5 @@
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded'
-import WhatshotRoundedIcon from '@mui/icons-material/WhatshotRounded'
+import ExploreRoundedIcon from '@mui/icons-material/ExploreRounded'
 import NewReleasesRoundedIcon from '@mui/icons-material/NewReleasesRounded'
 import LocalActivityRoundedIcon from '@mui/icons-material/LocalActivityRounded'
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded'
@@ -17,9 +17,9 @@ export const SidebarItems = [
                 image: HomeRoundedIcon
             },
             {
-                title: 'Trends',
-                url: 'trends',
-                image: WhatshotRoundedIcon
+                title: 'Feed',
+                url: 'feed',
+                image: ExploreRoundedIcon
             },
             {
                 title: 'History',
