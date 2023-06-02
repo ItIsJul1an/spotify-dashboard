@@ -1,5 +1,6 @@
 #search-item {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: 10px;
 
@@ -7,6 +8,7 @@
 
     border-radius: var(--br-r-small-medium);
 
+    cursor: default;
     transition: background-color 200ms;
 }
 
@@ -31,4 +33,72 @@
 
 #search-item > div > div {
     display: grid;
+}
+
+#heading-name {
+    max-width: 350px;
+}
+
+#heading-name > h1 {
+    display: inline;
+}
+
+.artists {
+    max-width: 250px;
+}
+
+#search-play, #search-follow, #search-favourite {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 35px;
+    width: 35px;
+
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(0, 0%, 0%);
+    border-radius: 100%;
+
+    cursor: pointer;
+    transition: scale 200ms ease-out;
+}
+
+#search-follow {
+    display: none;
+}
+
+#search-play:hover, #search-follow:hover, #search-favourite:hover {
+    scale: 1.1;
+}
+
+#search-item:hover > .tag-item {
+    display: none;
+}
+
+#search-item:hover #search-follow {
+    display: flex;
+}
+
+#search-item:hover #mutation-wrapper {
+    display: flex !important;
+}
+
+#information-wrapper {
+    display: flex;
+    align-items: center;
+
+    color: var(--sc-clr);
+}
+
+#information-wrapper > div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#mutation-wrapper {
+    display: none !important;
+    justify-content: center;
+    align-items: center;
+    gap: 10px !important;
 }
