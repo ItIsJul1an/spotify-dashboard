@@ -3,7 +3,7 @@ import {toast} from 'react-toastify'
 import Trending from '../components/ui/trending_section/Trending'
 import {
     useGetCurrentlyPlayingQuery,
-    useGetFollowedArtistsQuery,
+    useGetFollowedArtistsQuery, useGetMyProfileQuery,
     useGetUserDevicesQuery,
     useGetUserTrendingTracksQuery
 } from '../utils/api/apiService'
@@ -14,24 +14,26 @@ import useArtistStore from '../stores/artists/useArtistStore'
 import useTracksStore from '../stores/tracks/useTrackStore'
 import 'react-toastify/dist/ReactToastify.css'
 import './Layout.css'
-import {da} from "date-fns/locale";
+import useUserStore from "../stores/users/useUserStore";
 
 const Overview = () => {
 
     const {setDevices, setActiveDevice} = useDeviceStore()
     const {setFollowedArtists} = useArtistStore()
     const {setPlayingTrack} = useTracksStore()
+    const {setMyProfile} = useUserStore()
 
     const getUserTrendings = useGetUserTrendingTracksQuery(1)
     const getUserDevices = useGetUserDevicesQuery()
     const getFollowedArtists = useGetFollowedArtistsQuery()
     const getPlayingTrack = useGetCurrentlyPlayingQuery()
+    const getMyProfile = useGetMyProfileQuery()
 
     const [trendingTracks, setTrendingTracks] = useState<TrendingTrack>({
         items: [{
             album: {images: [{url: ''}]},
             artists: [{id: '', name: '', type: '', uri: ''}],
-            name: '', uri: ''
+            name: '', uri: '', type: ''
         }]
     })
 
@@ -53,7 +55,7 @@ const Overview = () => {
                 setActiveDevice(data.devices[0])
             } else {
                 toast.warn(<div>
-                    <h1 className='fw--semi-bold'>No Devices</h1>
+                    <h1 className='fw--semi-bold'>No active Device</h1>
                     <div style={{display: 'grid', gridGap: '15px'}}>
                         <span>In order to be able to play music, at least one device must be active</span>
                         <a href='https://open.spotify.com/' target='_blank' rel='noreferrer noopener'>Open Spotify</a>
@@ -110,6 +112,7 @@ const Overview = () => {
                 popularity: data.item.popularity,
                 is_local: data.item.is_local,
                 duration_ms: data.item.duration_ms,
+                timestamp: data.timestamp,
                 album: {
                     id: data.item.album.id,
                     images: data.item.album.images,
@@ -120,6 +123,12 @@ const Overview = () => {
             })
         }
     }, [getPlayingTrack.data])
+
+    useEffect(() => {
+        if (getMyProfile.isSuccess) {
+            setMyProfile(getMyProfile.data)
+        }
+    }, [getMyProfile.data])
 
     return (
         <div id='layout-container'>
