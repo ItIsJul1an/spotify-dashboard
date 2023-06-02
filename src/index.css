@@ -123,7 +123,7 @@ span, label {
 }
 
 a {
-    color: inherit;
+    color: hsl(249, 62%, 58%);
     text-decoration: inherit;
 }
 
