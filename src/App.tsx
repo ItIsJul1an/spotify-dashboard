@@ -44,7 +44,7 @@ function App() {
             <Routes>
                 <Route index={true}
                        element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<Overview/>}/>}/>
-                <Route path='trends'
+                <Route path='feed'
                        element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<Overview/>}/>}/>
                 <Route path='new'
                        element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<Overview/>}/>}/>
