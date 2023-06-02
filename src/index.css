@@ -291,6 +291,12 @@ ul {
     z-index: 1;
 }
 
+.overflow-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis !important;
+}
+
 .md-menu {
     border: 1px solid transparent;
     transition: background-color 200ms, border-color 200ms, box-shadow 200ms, opacity 200ms;
