@@ -18,8 +18,6 @@ const SearchDialog = ({setRender}: SearchDialogProps) => {
 
     const [outClickRef] = useOnClickOutside(() => setRender(() => false))
 
-    console.log(searchResult)
-
     /* Reset search every time the component rerender */
     useEffect(() => {
         setSearchResult(() => undefined)
