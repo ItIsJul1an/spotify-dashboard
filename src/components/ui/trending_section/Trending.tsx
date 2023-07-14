@@ -26,6 +26,7 @@ const Trending = ({trendingTracks}: TrendingProps) => {
                             <h1 className='fs-sc-1'>{trendingTracks.items[0].name}</h1>
                             <div>
                                 <PlayButton trackUri={trendingTracks.items[0].uri}
+                                            itemType={trendingTracks.items[0].type}
                                             style={{backgroundColor: 'hsl(0, 0%, 0%)', color: 'hsl(0, 0%, 100%)'}}/>
                                 <FollowButton artistUri={trendingTracks.items[0].artists[0].id} style={{
                                     backgroundColor: 'transparent',
