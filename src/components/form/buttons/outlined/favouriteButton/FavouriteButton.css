@@ -1,0 +1,11 @@
+#favourite-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 8px 15px;
+
+    border-radius: var(--br-r-medium);
+
+    cursor: pointer;
+}
