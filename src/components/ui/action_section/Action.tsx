@@ -1,7 +1,7 @@
 import React from 'react'
 import FavArtists from '../fav_artists_section/FavArtists'
 import './Action.css'
-import PlayerContainer from "../player/PlayerContainer";
+import PlayerCard from "../player/PlayerCard";
 
 const Action = () => {
 
@@ -12,7 +12,7 @@ const Action = () => {
                 <FavArtists/>
             </div>
 
-            <PlayerContainer/>
+            <PlayerCard/>
         </div>
     )
 }
