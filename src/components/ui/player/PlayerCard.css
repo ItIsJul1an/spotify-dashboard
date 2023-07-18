@@ -1,0 +1,42 @@
+#player {
+    display: flex;
+    flex-direction: column;
+
+    padding: var(--pd-t-big);
+
+    background-color: var(--nl-clr-2);
+    border-radius: var(--br-r-medium);
+}
+
+#player--image-wrapper {
+    border-radius: var(--br-r-medium);
+
+    overflow: hidden;
+}
+
+#player--image-wrapper img {
+    width: 100%;
+
+    border-radius: var(--br-r-medium);
+
+    object-fit: cover;
+    aspect-ratio: 4/3.5;
+}
+
+#player--text-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    margin-top: 10px;
+
+    cursor: default;
+}
+
+#player--text-wrapper > div {
+    max-width: 150px;
+}
+
+#player--text-wrapper h1 {
+    display: inline;
+}
