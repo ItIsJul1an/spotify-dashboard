@@ -15,6 +15,7 @@ import useTracksStore from '../stores/tracks/useTrackStore'
 import 'react-toastify/dist/ReactToastify.css'
 import './Layout.css'
 import useUserStore from "../stores/users/useUserStore";
+import PlayerContainer from "../components/ui/player/PlayerContainer";
 
 const Overview = () => {
 
@@ -131,8 +132,10 @@ const Overview = () => {
     }, [getMyProfile.data])
 
     return (
-        <div id='layout-container'>
+        <div id='layout-container' style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
             <Trending trendingTracks={trendingTracks}/>
+
+            <PlayerContainer/>
         </div>
     )
 }
