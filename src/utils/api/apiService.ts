@@ -348,3 +348,57 @@ export const useRemoveTrackMutation = () => {
         onError: (err) => toast.error('Cannot remove track: ' + (err as AxiosError).message)
     })
 }
+
+export const useSkipToPositionMutation = () => {
+    const {accessToken} = useUserSessionStore()
+    const queryClient = useQueryClient()
+
+    return useMutation((position: number) => {
+        return axios.put(`${webApiEndpoint}/me/player/seek?position_ms=${position}`, null, {
+            headers: {Authorization: `Bearer ${accessToken}`}
+        })
+    }, {
+        onSuccess: () => {
+            setTimeout(() => {
+                queryClient.invalidateQueries(['currentlyPlayingTrack'])
+            }, 400)
+        },
+        onError: (err) => toast.error('Cannot skip to position: ' + (err as AxiosError).message)
+    })
+}
+
+export const useSkipToNextMutation = () => {
+    const {accessToken} = useUserSessionStore()
+    const queryClient = useQueryClient()
+
+    return useMutation(() => {
+        return axios.post(`${webApiEndpoint}/me/player/next`, null, {
+            headers: {Authorization: `Bearer ${accessToken}`}
+        })
+    }, {
+        onSuccess: () => {
+            setTimeout(() => {
+                queryClient.invalidateQueries(['currentlyPlayingTrack'])
+            }, 400)
+        },
+        onError: (err) => toast.error('Cannot skip to next track: ' + (err as AxiosError).message)
+    })
+}
+
+export const useSkipToPrevMutation = () => {
+    const {accessToken} = useUserSessionStore()
+    const queryClient = useQueryClient()
+
+    return useMutation(() => {
+        return axios.post(`${webApiEndpoint}/me/player/previous`, null, {
+            headers: {Authorization: `Bearer ${accessToken}`}
+        })
+    }, {
+        onSuccess: () => {
+            setTimeout(() => {
+                queryClient.invalidateQueries(['currentlyPlayingTrack'])
+            }, 400)
+        },
+        onError: (err) => toast.error('Cannot skip to previous track: ' + (err as AxiosError).message)
+    })
+}
