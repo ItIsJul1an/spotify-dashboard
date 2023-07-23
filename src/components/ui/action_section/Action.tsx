@@ -12,7 +12,9 @@ const Action = () => {
                 <FavArtists/>
             </div>
 
-            <PlayerCard/>
+            <div style={{alignSelf: 'flex-end'}}>
+                <PlayerCard/>
+            </div>
         </div>
     )
 }
