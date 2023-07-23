@@ -1,0 +1,11 @@
+#progress-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+}
+
+#progress-indicator {
+    width: 90%;
+}
