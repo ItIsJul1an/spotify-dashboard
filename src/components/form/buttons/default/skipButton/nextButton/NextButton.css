@@ -1,0 +1,15 @@
+#next-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 35px;
+    height: 35px;
+
+    cursor: pointer;
+    transition: scale 200ms ease-out;
+}
+
+#next-container:hover {
+    scale: 1.1;
+}
