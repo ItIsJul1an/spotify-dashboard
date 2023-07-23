@@ -28,10 +28,10 @@ const PlayerCard = () => {
                         </div>
 
                         <div ref={hoverRef} id='player--text-wrapper'>
-                            <div className='overflow-ellipsis' onMouseOver={() => setTooltipContent(playingTrack.name)}>
+                            <div className='overflow-ellipsis' onMouseOver={() => setTooltipContent('🎵 ' + playingTrack.name)}>
                                 <h1>{playingTrack.name}</h1>
                             </div>
-                            <div className='overflow-ellipsis' onMouseOver={() => setTooltipContent(artists)}>
+                            <div className='overflow-ellipsis' onMouseOver={() => setTooltipContent('👨‍🎤 ' + artists)}>
                                 <span>
                                 {artists}
                             </span>
