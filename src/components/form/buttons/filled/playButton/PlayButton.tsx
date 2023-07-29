@@ -1,4 +1,4 @@
-import React, {ButtonHTMLAttributes, createElement, useEffect, useState} from 'react'
+import React, {ButtonHTMLAttributes, createElement, useEffect, useState, memo} from 'react'
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded'
 import StopRoundedIcon from '@mui/icons-material/StopRounded'
 import {
@@ -9,8 +9,8 @@ import {
 import useDeviceStore from '../../../../../stores/devices/useDeviceStore'
 import useTracksStore from '../../../../../stores/tracks/useTrackStore'
 import './PlayButton.css'
-import TooltipManager from "../../../../ui/tooltip/TooltipManager";
-import useHover from "../../../../../hooks/useHover";
+import TooltipManager from '../../../../ui/tooltip/TooltipManager'
+import useHover from '../../../../../hooks/useHover'
 
 interface PlayButtonProps {
     trackUri: string
@@ -30,7 +30,7 @@ const PlayButton = ({
     const [hoverRef, isHovered] = useHover()
 
     const {activeDevice} = useDeviceStore()
-    const {playingTrack} = useTracksStore()
+    const {playingTrack, setPlayingTrackProgress} = useTracksStore()
 
     const [isPlaying, setPlaying] = useState<boolean>(false)
     const [playlistItems, setPlaylistItems] = useState<{ track: { uri: string } }[]>([{track: {uri: ''}}])
@@ -74,6 +74,19 @@ const PlayButton = ({
         }
     }, [pauseTrack.data])
 
+    useEffect(() => {
+        if (playingTrack && playingTrack.is_playing) {
+            const playTimeInterval = setInterval(() => {
+                if (playingTrack.playing_progress_ms)
+                    setPlayingTrackProgress(playingTrack.playing_progress_ms + 1_000)
+            }, 1_000)
+
+            return () => {
+                clearInterval(playTimeInterval)
+            }
+        }
+    }, [playingTrack])
+
     return (
         <>
             <button id='play-button' ref={hoverRef} aria-label='Play button' {...props}
@@ -96,4 +109,4 @@ const PlayButton = ({
     )
 }
 
-export default PlayButton
+export default memo(PlayButton)
