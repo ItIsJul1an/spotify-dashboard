@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: space-between;
 
-    height: 140px;
+    height: 120px;
 
     padding: var(--pd-t-medium) var(--pd-t-big);
 
@@ -16,7 +16,13 @@
 
 }
 
-#controls {
+#player-container > div:first-of-type {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.controls {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,3 +49,16 @@
     scale: 1.1;
 }
 
+#player-container--favourite {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 35px;
+    width: 35px;
+
+    background-color: var(--nl-clr-1);
+    border-radius: var(--br-r-small-medium);
+
+    cursor: pointer;
+}
