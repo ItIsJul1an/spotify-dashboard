@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {memo, useEffect, useState} from 'react'
 import {toast} from 'react-toastify'
 import Trending from '../components/ui/trending_section/Trending'
 import {
@@ -140,4 +140,4 @@ const Overview = () => {
     )
 }
 
-export default Overview
+export default memo(Overview)
