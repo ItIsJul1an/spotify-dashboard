@@ -8,4 +8,14 @@
 
 #progress-indicator {
     width: 90%;
+    accent-color: var(--ac-clr-1);
+}
+
+#progress-indicator::-webkit-slider-thumb {
+    cursor: pointer;
+    transition: scale 200ms ease-out;
+}
+
+#progress-indicator::-webkit-slider-thumb:hover {
+    scale: 1.1;
 }
