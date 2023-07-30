@@ -1,12 +1,12 @@
 import React from 'react'
-import './PlayerContainer.css'
+import useTracksStore from '../../../stores/tracks/useTrackStore'
 import ProgressSlider from '../../form/progress_slider/ProgressSlider'
 import PlayButton from '../../form/buttons/filled/playButton/PlayButton'
-import useTracksStore from '../../../stores/tracks/useTrackStore'
-import PrevButton from "../../form/buttons/default/skipButton/prevButton/PrevButton";
-import NextButton from "../../form/buttons/default/skipButton/nextButton/NextButton";
-import FavouriteButton from "../../form/buttons/outlined/favouriteButton/FavouriteButton";
-import SoundToggle from "../../form/sound/SoundToggle";
+import PrevButton from '../../form/buttons/default/skipButton/prevButton/PrevButton'
+import NextButton from '../../form/buttons/default/skipButton/nextButton/NextButton'
+import FavouriteButton from '../../form/buttons/outlined/favouriteButton/FavouriteButton'
+import SoundToggle from '../../form/sound/SoundToggle'
+import './PlayerContainer.css'
 
 const PlayerContainer = () => {
 
@@ -15,24 +15,28 @@ const PlayerContainer = () => {
     return (
         playingTrack ?
             <div id='player-container'>
-                <div>
+                <div className='controls' style={{justifySelf: 'flex-start', gridArea: 'left'}}>
                     <FavouriteButton id='player-container--favourite' itemId={playingTrack.id}
                                      itemType={playingTrack.type} displayContent='image'/>
-
-                    <div className='controls'>
-                        <PrevButton/>
-                        <PlayButton id='player-container--play' trackUri={playingTrack.uri}
-                                    itemType={playingTrack.type}
-                                    displayContent='image'/>
-                        <NextButton/>
-                    </div>
-
-                    <div className='controls'>
-                        <SoundToggle/>
-                    </div>
+                    <FavouriteButton id='player-container--favourite' itemId={playingTrack.id}
+                                     itemType={playingTrack.type} displayContent='image'/>
+                    <FavouriteButton id='player-container--favourite' itemId={playingTrack.id}
+                                     itemType={playingTrack.type} displayContent='image'/>
                 </div>
 
-                <div>
+                <div className='controls' style={{gridArea: 'middle'}}>
+                    <PrevButton/>
+                    <PlayButton id='player-container--play' trackUri={playingTrack.uri}
+                                itemType={playingTrack.type}
+                                displayContent='image'/>
+                    <NextButton/>
+                </div>
+
+                <div className='controls' style={{justifySelf: 'flex-end', gridArea: 'right'}}>
+                    <SoundToggle/>
+                </div>
+
+                <div style={{alignSelf: 'center', gridArea: 'down'}}>
                     <ProgressSlider/>
                 </div>
             </div>
