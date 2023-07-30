@@ -1,0 +1,30 @@
+#volume-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#volume-indicator {
+    width: 90%;
+    accent-color: var(--ac-clr-1);
+}
+
+#volume-indicator::-webkit-slider-thumb {
+    cursor: pointer;
+    transition: scale 200ms ease-out;
+}
+
+#volume-indicator::-webkit-slider-thumb:hover {
+    scale: 1.1;
+}
+
+.control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 35px;
+    width: 35px;
+
+    cursor: pointer;
+}
