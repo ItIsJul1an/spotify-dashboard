@@ -8,6 +8,12 @@
     border-radius: var(--br-r-medium);
 }
 
+#player > div:last-of-type {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 #player--image-wrapper {
     border-radius: var(--br-r-medium);
 
@@ -39,4 +45,31 @@
 
 #player--text-wrapper h1 {
     display: inline;
+}
+
+#player-card-container--follow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: fit-content;
+    width: fit-content;
+
+    padding: 5px;
+
+    color: rgb(0, 0, 0);
+    background-color: transparent;
+
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: var(--br-r-small-medium);
+
+    cursor: pointer;
+}
+
+#player-card-container--follow > svg {
+    transition: scale 200ms ease-out;
+}
+
+#player-card-container--follow:hover > svg {
+    scale: 1.1;
 }
