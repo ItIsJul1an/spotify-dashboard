@@ -39,7 +39,7 @@ const PlayerCard = () => {
                         </div>
                     </>
                     :
-                    <h1>Currently not playing</h1>
+                    <h1>Currently nothing playing</h1>
             }
 
             {
