@@ -53,4 +53,13 @@
     border-radius: var(--br-r-small-medium);
 
     cursor: pointer;
+
+}
+
+#player-container--favourite > svg {
+    transition: scale 200ms ease-out;
+}
+
+#player-container--favourite:hover > svg {
+    scale: 1.1;
 }
