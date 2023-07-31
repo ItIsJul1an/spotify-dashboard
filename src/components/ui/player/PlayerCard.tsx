@@ -4,6 +4,7 @@ import useTracksStore from '../../../stores/tracks/useTrackStore'
 import './PlayerCard.css'
 import useHover from "../../../hooks/useHover";
 import TooltipManager from "../tooltip/TooltipManager";
+import FollowButton from "../../form/buttons/outlined/followButton/FollowButton";
 
 const PlayerCard = () => {
 
@@ -27,15 +28,27 @@ const PlayerCard = () => {
                             }
                         </div>
 
-                        <div ref={hoverRef} id='player--text-wrapper'>
-                            <div className='overflow-ellipsis' onMouseOver={() => setTooltipContent('🎵 ' + playingTrack.name)}>
-                                <h1>{playingTrack.name}</h1>
-                            </div>
-                            <div className='overflow-ellipsis' onMouseOver={() => setTooltipContent('👨‍🎤 ' + artists)}>
+                        <div>
+                            <div ref={hoverRef} id='player--text-wrapper'>
+                                <div className='overflow-ellipsis'
+                                     onMouseOver={() => setTooltipContent('🎵 ' + playingTrack.name)}>
+                                    <h1>{playingTrack.name}</h1>
+                                </div>
+                                <div className='overflow-ellipsis'
+                                     onMouseOver={() => setTooltipContent('👨‍🎤 ' + artists)}>
                                 <span>
                                 {artists}
                             </span>
+                                </div>
                             </div>
+
+                            {
+                                playingTrack.artists.length === 1 && artists ?
+                                    <FollowButton id='player-card-container--follow'
+                                                  artistUri={playingTrack.artists[0].uri.split(':')[2]}
+                                                  displayContent='image'/>
+                                    : <h1>Only one artist can be followed at the same time</h1>
+                            }
                         </div>
                     </>
                     :
