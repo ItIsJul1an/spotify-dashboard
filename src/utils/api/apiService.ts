@@ -402,3 +402,21 @@ export const useSkipToPrevMutation = () => {
         onError: (err) => toast.error('Cannot skip to previous track: ' + (err as AxiosError).message)
     })
 }
+
+export const useSetPlaybackVolumeMutation = () => {
+    const {accessToken} = useUserSessionStore()
+    const queryClient = useQueryClient()
+
+    return useMutation((volumePercent: number) => {
+        return axios.put(`${webApiEndpoint}/me/player/volume?volume_percent=${volumePercent}`, null, {
+            headers: {Authorization: `Bearer ${accessToken}`}
+        })
+    }, {
+        onSuccess: () => {
+            setTimeout(() => {
+                queryClient.invalidateQueries(['userDevices'])
+            }, 400)
+        },
+        onError: (err) => toast.error('Cannot change volume: ' + (err as AxiosError).message)
+    })
+}
