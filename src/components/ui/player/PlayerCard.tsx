@@ -5,12 +5,14 @@ import './PlayerCard.css'
 import useHover from "../../../hooks/useHover";
 import TooltipManager from "../tooltip/TooltipManager";
 import FollowButton from "../../form/buttons/outlined/followButton/FollowButton";
+import KebabMenuButton from "../../form/menu/kebab_menu/KebabMenuButton";
 
 const PlayerCard = () => {
 
     const {playingTrack} = useTracksStore()
 
     const [tooltipContent, setTooltipContent] = useState<string>()
+    const [mountDropdown, setMountDropdown] = useState<boolean>(false)
     const [hoverRef, isHovered] = useHover()
 
     const artists = playingTrack ? playingTrack.artists.map(artist => artist.name).join(', ') : undefined
@@ -47,7 +49,10 @@ const PlayerCard = () => {
                                     <FollowButton id='player-card-container--follow'
                                                   artistUri={playingTrack.artists[0].uri.split(':')[2]}
                                                   displayContent='image'/>
-                                    : <h1>Only one artist can be followed at the same time</h1>
+                                    : <KebabMenuButton size='16' dropdownContent={
+                                        <>Add</>
+                                    } mountDropdown={mountDropdown} setMountDropdown={setMountDropdown}
+                                                       tooltipContent='Adding options'/>
                             }
                         </div>
                     </>
