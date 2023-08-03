@@ -2,10 +2,10 @@ import React, {useState} from 'react'
 import spotify from '../../../data/images/spotify.svg'
 import useTracksStore from '../../../stores/tracks/useTrackStore'
 import './PlayerCard.css'
-import useHover from "../../../hooks/useHover";
-import TooltipManager from "../tooltip/TooltipManager";
-import FollowButton from "../../form/buttons/outlined/followButton/FollowButton";
-import KebabMenuButton from "../../form/menu/kebab_menu/KebabMenuButton";
+import useHover from '../../../hooks/useHover'
+import TooltipManager from '../tooltip/TooltipManager'
+import FollowButton from '../../form/buttons/outlined/followButton/FollowButton'
+import KebabMenuButton from '../../form/menu/kebab_menu/KebabMenuButton'
 
 const PlayerCard = () => {
 
