@@ -3,7 +3,7 @@ import {toast} from 'react-toastify'
 import Trending from '../components/ui/trending_section/Trending'
 import {
     useGetCurrentlyPlayingQuery,
-    useGetFollowedArtistsQuery, useGetMyProfileQuery,
+    useGetFollowedArtistsQuery, useGetMyProfileQuery, useGetPlaybackStateQuery,
     useGetUserDevicesQuery,
     useGetUserTrendingTracksQuery
 } from '../utils/api/apiService'
@@ -16,6 +16,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import './Layout.css'
 import useUserStore from "../stores/users/useUserStore";
 import PlayerContainer from "../components/ui/player/PlayerContainer";
+import usePlaybackStore from "../stores/playback_state/usePlaybackStore";
 
 const Overview = () => {
 
@@ -23,12 +24,14 @@ const Overview = () => {
     const {setFollowedArtists} = useArtistStore()
     const {setPlayingTrack} = useTracksStore()
     const {setMyProfile} = useUserStore()
+    const {setPlayback} = usePlaybackStore()
 
     const getUserTrendings = useGetUserTrendingTracksQuery(1)
     const getUserDevices = useGetUserDevicesQuery()
     const getFollowedArtists = useGetFollowedArtistsQuery()
     const getPlayingTrack = useGetCurrentlyPlayingQuery()
     const getMyProfile = useGetMyProfileQuery()
+    const getPlaybackState = useGetPlaybackStateQuery()
 
     const [trendingTracks, setTrendingTracks] = useState<TrendingTrack>({
         items: [{
@@ -130,6 +133,12 @@ const Overview = () => {
             setMyProfile(getMyProfile.data)
         }
     }, [getMyProfile.data])
+
+    useEffect(() => {
+        if (getPlaybackState.isSuccess) {
+            setPlayback(getPlaybackState.data)
+        }
+    }, [getPlaybackState.data])
 
     return (
         <div id='layout-container' style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
