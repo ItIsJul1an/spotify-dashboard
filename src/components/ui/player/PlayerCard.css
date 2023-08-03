@@ -73,3 +73,7 @@
 #player-card-container--follow:hover > svg {
     scale: 1.1;
 }
+
+#player--dropdown-container {
+    position: relative;
+}
