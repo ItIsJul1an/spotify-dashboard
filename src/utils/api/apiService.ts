@@ -188,6 +188,18 @@ export const useGetPlaylistItemsQuery = (playlistId: string | undefined) => {
     })
 }
 
+export const useGetPlaybackStateQuery = () => {
+    const {accessToken} = useUserSessionStore()
+
+    return useQuery(['playback'], () =>
+        axios.get(`${webApiEndpoint}/me/player`, {
+            headers: {Authorization: `Bearer ${accessToken}`}
+        }).then((res) => res.data), {
+        enabled: accessToken !== undefined && accessToken !== '',
+        onError: (err) => toast.error('Something went wrong: ' + (err as AxiosError).message)
+    })
+}
+
 export const usePlayTrackMutation = (device?: string) => {
     const {accessToken} = useUserSessionStore()
     const {playingTrack} = useTracksStore()
@@ -418,5 +430,37 @@ export const useSetPlaybackVolumeMutation = () => {
             }, 400)
         },
         onError: (err) => toast.error('Cannot change volume: ' + (err as AxiosError).message)
+    })
+}
+
+export const useSetRepeatModeMutation = () => {
+    const {accessToken} = useUserSessionStore()
+
+    return useMutation((state: 'track' | 'context' | 'off' = 'off') => {
+        return axios.put(`${webApiEndpoint}/me/player/repeat?state=${state}`, null, {
+            headers: {Authorization: `Bearer ${accessToken}`}
+        })
+    }, {
+        onError: (err) => toast.error('Cannot set repeat mode: ' + (err as AxiosError).message)
+    })
+}
+
+export const useSetTogglePlaybackShuffleMutation = () => {
+    const {accessToken} = useUserSessionStore()
+    const queryClient = useQueryClient()
+
+    return useMutation((state: boolean) => {
+        console.log(state)
+
+        return axios.put(`${webApiEndpoint}/me/player/shuffle?state=${state}`, null, {
+            headers: {Authorization: `Bearer ${accessToken}`}
+        })
+    }, {
+        onSuccess: () => {
+            setTimeout(() => {
+                queryClient.invalidateQueries(['playback'])
+            }, 400)
+        },
+        onError: (err) => toast.error('Cannot set shuffle mode: ' + (err as AxiosError).message)
     })
 }
