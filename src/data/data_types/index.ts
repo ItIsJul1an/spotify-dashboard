@@ -5,5 +5,6 @@ import {TrendingTrack} from './trendingTrack'
 import {Artist} from './artist'
 import {User} from './user'
 import {Playlist} from './playlist'
+import {Playback} from './playback'
 
-export type {Track, Device, Album, TrendingTrack, Artist, User, Playlist}
+export type {Track, Device, Album, TrendingTrack, Artist, User, Playlist, Playback}
