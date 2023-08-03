@@ -7,6 +7,8 @@ import NextButton from '../../form/buttons/default/skipButton/nextButton/NextBut
 import FavouriteButton from '../../form/buttons/outlined/favouriteButton/FavouriteButton'
 import SoundToggle from '../../form/sound/SoundToggle'
 import './PlayerContainer.css'
+import RepeatButton from "../../form/buttons/default/repeat_button/RepeatButton";
+import ShuffleButton from "../../form/buttons/default/shuffle_button/ShuffleButton";
 
 const PlayerContainer = () => {
 
@@ -25,11 +27,13 @@ const PlayerContainer = () => {
                 </div>
 
                 <div className='controls' style={{gridArea: 'middle'}}>
+                    <RepeatButton/>
                     <PrevButton/>
                     <PlayButton id='player-container--play' trackUri={playingTrack.uri}
                                 itemType={playingTrack.type}
                                 displayContent='image'/>
                     <NextButton/>
+                    <ShuffleButton/>
                 </div>
 
                 <div className='controls' style={{justifySelf: 'flex-end', gridArea: 'right'}}>
