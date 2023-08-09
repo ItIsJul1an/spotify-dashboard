@@ -68,8 +68,10 @@ To run this project, you will need to add the following environment variables to
 
 ```
 REACT_APP_SPOTIFY_CLIENT_ID=YOUR_CLIENT_ID
-REACT_APP_REDIRECT_URI=http://localhost:3000/login
+REACT_APP_REDIRECT_URI=http://localhost:3000/login *
 ```
+* is required
+
 ## Deployment
 
 ### `npm start`
