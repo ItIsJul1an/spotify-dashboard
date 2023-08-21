@@ -435,12 +435,18 @@ export const useSetPlaybackVolumeMutation = () => {
 
 export const useSetRepeatModeMutation = () => {
     const {accessToken} = useUserSessionStore()
+    const queryClient = useQueryClient()
 
     return useMutation((state: 'track' | 'context' | 'off' = 'off') => {
         return axios.put(`${webApiEndpoint}/me/player/repeat?state=${state}`, null, {
             headers: {Authorization: `Bearer ${accessToken}`}
         })
     }, {
+        onSuccess: () => {
+            setTimeout(() => {
+                queryClient.invalidateQueries(['playback'])
+            }, 400)
+        },
         onError: (err) => toast.error('Cannot set repeat mode: ' + (err as AxiosError).message)
     })
 }
@@ -450,8 +456,6 @@ export const useSetTogglePlaybackShuffleMutation = () => {
     const queryClient = useQueryClient()
 
     return useMutation((state: boolean) => {
-        console.log(state)
-
         return axios.put(`${webApiEndpoint}/me/player/shuffle?state=${state}`, null, {
             headers: {Authorization: `Bearer ${accessToken}`}
         })
