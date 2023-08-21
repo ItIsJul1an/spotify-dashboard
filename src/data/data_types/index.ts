@@ -6,5 +6,6 @@ import {Artist} from './artist'
 import {User} from './user'
 import {Playlist} from './playlist'
 import {Playback} from './playback'
+import {WebsiteState} from './websiteState'
 
-export type {Track, Device, Album, TrendingTrack, Artist, User, Playlist, Playback}
+export type {Track, Device, Album, TrendingTrack, Artist, User, Playlist, Playback, WebsiteState}
