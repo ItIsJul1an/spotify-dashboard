@@ -63,3 +63,18 @@
 #player-container--favourite:hover > svg {
     scale: 1.1;
 }
+
+.active--full-size--ref-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    max-height: unset;
+    max-width: unset;
+
+    width: 100vw;
+}
