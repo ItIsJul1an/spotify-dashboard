@@ -1,0 +1,29 @@
+#full-size--container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 35px;
+    width: 35px;
+
+    background-color: var(--nl-clr-1);
+    border-radius: var(--br-r-small-medium);
+
+    cursor: pointer;
+
+}
+
+#full-size--container > svg {
+    transition: scale 200ms ease-out;
+}
+
+#full-size--container:hover > svg {
+    scale: 1.1;
+}
+
+.active--full-size {
+    color: var(--nl-clr-1) !important;
+    background-color: var(--ac-clr-1) !important;
+
+    opacity: 1 !important;
+}
