@@ -8,11 +8,11 @@ import './FullSizeButton.css'
 
 const FullSizeButton = () => {
 
-    const {setPlayerFullSize} = useWebsiteStateStore()
+    const {websiteState, setPlayerFullSize} = useWebsiteStateStore()
 
     const [fullSizeContainerRef, isHovered] = useHover()
 
-    const [fullSize, setFullSize] = useState<boolean>(false)
+    const [fullSize, setFullSize] = useState<boolean>(websiteState.playerFullSize)
 
     useEffect(() => {
         toggleFullSize()
