@@ -1,10 +1,17 @@
 import {MutableRefObject, useEffect, useRef, useState} from 'react'
+import useWebsiteStateStore from '../stores/website/useWebsiteStateStore'
 
 const useHover = (): [MutableRefObject<any>, boolean] => {
+
+    const {websiteState} = useWebsiteStateStore()
 
     const [isHovering, setHovering] = useState<boolean>(false)
 
     const ref = useRef<any>(null)
+
+    useEffect(() => {
+        setHovering(() => false)
+    }, [websiteState.playerFullSize])
 
     useEffect(() => {
         const handleMouseOver = () => setHovering(true)
