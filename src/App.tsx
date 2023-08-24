@@ -1,7 +1,7 @@
 import React from 'react'
 import {Route, Routes} from 'react-router'
 import LandingPage from './pages/landing_page/LandingPage'
-import Overview from './pages/Overview'
+import Overview from './pages/overview/Overview'
 import FavSongsPage from './pages/fav/songs/FavSongsPage'
 import FavAlbumsPage from './pages/fav/albums/FavAlbumsPage'
 import FavArtistsPage from './pages/fav/artists/FavArtistsPage'
@@ -13,6 +13,7 @@ import ProtectedRoute, {ProtectedRouteProps} from './react_router_routes/Protect
 import useUserSessionStore from './stores/user_session/userSessionStore'
 import {ToastContainer} from "react-toastify";
 import NotFound from "./pages/not_found/NotFound";
+import PlayerContainer from "./components/ui/player/PlayerContainer";
 
 function App() {
 
@@ -29,7 +30,7 @@ function App() {
     }
 
     return (
-        <section id='main-section' style={{backgroundColor: 'var(--nl-clr-2)'}}>
+        <section id='main-section' style={{backgroundColor: 'var(--nl-clr-1)'}}>
             <ToastContainer/>
             {
                 accessToken !== undefined && accessToken !== '' ?
@@ -37,6 +38,7 @@ function App() {
                         <Navbar/>
                         <Sidebar/>
                         <Action/>
+                        <PlayerContainer/>
                     </>
                     : null
             }
@@ -44,12 +46,12 @@ function App() {
             <Routes>
                 <Route index={true}
                        element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<Overview/>}/>}/>
-                <Route path='feed'
-                       element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<Overview/>}/>}/>
+                {/*<Route path='feed'
+                         element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<Overview/>}/>}/>
                 <Route path='new'
                        element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<Overview/>}/>}/>
                 <Route path='events'
-                       element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<Overview/>}/>}/>
+                       element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<Overview/>}/>}/>*/}
                 <Route path='fav/songs'
                        element={<PrivateRoute {...defaultPrivateRouteProps} outlet={<FavSongsPage/>}/>}/>
                 <Route path='fav/artists'
