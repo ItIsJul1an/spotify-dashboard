@@ -15,6 +15,7 @@ const useTracksStore = create(
     persist<TracksStore>((set, get) => ({
             playingTrack: undefined,
             tracks: [{
+                added_at: '',
                 id: '',
                 is_local: false,
                 name: '',
@@ -26,10 +27,11 @@ const useTracksStore = create(
                 uri: '',
                 album: {
                     id: '',
+                    name: '',
                     images: [{height: 0, width: 0, url: ''}],
                     uri: ''
                 },
-                artists: [{id: '', uri: '', name: ''}]
+                artists: [{external_urls: {spotify: ''}, id: '', uri: '', name: '', type: ''}]
             }],
             getTrackById: (id: string) => {
                 return get().tracks.find(track => track.id === id)
