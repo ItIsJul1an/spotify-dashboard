@@ -32,6 +32,19 @@ export const useGetUserTrendingTracksQuery = (limit: number = 20) => {
     )
 }
 
+export const useGetSavedTracksQuery = () => {
+    const {accessToken} = useUserSessionStore()
+
+    return useQuery(['savedTracks'], () =>
+            axios.get(`${webApiEndpoint}/me/tracks`, {
+                headers: {Authorization: `Bearer ${accessToken}`}
+            }).then((res) => res.data), {
+            enabled: accessToken !== undefined && accessToken !== '',
+            onError: (err) => toast.error('Something went wrong: ' + (err as AxiosError).message)
+        }
+    )
+}
+
 export const useGetArtistQuery = (id: string | undefined) => {
     const {accessToken} = useUserSessionStore()
 
