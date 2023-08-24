@@ -251,9 +251,10 @@ ul {
 #main-section {
     display: grid;
     grid-template-areas: 'sidebar navbar action'
-                         'sidebar main action';
+                         'sidebar main action'
+                         'sidebar player action';
 
-    grid-template-rows: 80px 1fr;
+    grid-template-rows: 80px 1fr 180px;
     grid-template-columns: 260px 1fr 360px;
 
     height: 100vh;
