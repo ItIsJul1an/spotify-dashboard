@@ -1,3 +1,11 @@
+#player--parent-container {
+    grid-area: player;
+
+    margin: 20px 20px 0 20px;
+
+    z-index: 999;
+}
+
 #player-container {
     display: grid;
     grid-template: 'left middle right'
@@ -12,6 +20,8 @@
 
     background-color: var(--nl-clr-2);
     border-radius: var(--br-r-medium);
+
+    transition: opacity 200ms ease-out;
 }
 
 .controls {
@@ -53,7 +63,6 @@
     border-radius: var(--br-r-small-medium);
 
     cursor: pointer;
-
 }
 
 #player-container--favourite > svg {
@@ -65,8 +74,7 @@
 }
 
 .active--full-size--ref-container {
-    display: flex;
-    justify-content: center;
+    display: grid;
     align-items: flex-end;
 
     position: fixed;
@@ -77,4 +85,26 @@
     max-width: unset;
 
     width: 100vw;
+
+    padding: 24px 60px;
+}
+
+#full-size--information-container {
+    display: flex;
+    align-items: center;
+    gap: 58px;
+
+    transition: margin 400ms ease-out;
+}
+
+#full-size--information-container > div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#full-size--img {
+    width: 420px;
+
+    transition: width 400ms ease-out;
 }
